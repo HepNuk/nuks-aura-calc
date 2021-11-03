@@ -1,0 +1,40 @@
+@font-face {
+    font-family: itemFont;
+    src: url(../fonts/Fontin-Bold.ttf);
+}
+
+body {
+  padding: 15px;
+  background-color: #58606b;
+}
+
+.app {
+  font-family: itemFont;
+  padding: 1px;
+  color: rgb(255, 255, 255);
+}
+
+.header {
+  height: 100%;
+  padding-left: 10px;
+  padding-top: 5px;
+  background-color: #373d44;
+  border-radius: 6px;
+}
+
+.content {
+  padding: 10px !important;
+  background-color: #373d44;
+  border-radius: 6px;
+}
+
+.output-stats {
+  padding: 15px;
+  min-width: 475px;
+  max-height: 820px;
+  min-height: 820px;
+  overflow-y: auto;
+  background-color: #373d44;
+  border-radius: 6px;
+}
+
