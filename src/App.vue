@@ -1,15 +1,62 @@
 <template>
+  <div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+import AurasServices from './services/AurasServices';
+import Aura from './models/Aura';
+import SupportGem from './models/SupportGem';
 
 export default defineComponent({
   name: 'App',
   components: {
   },
 
+  data() {
+    return {
+      loading: false as boolean,
+
+      auraStatic: new Map() as Map<string, Aura>,
+      supportGemsStatic: new Map() as Map<string, SupportGem>,
+    };
+  },
+
+  async mounted() {
+    this.loading = true;
+    console.log('Loading Auras from RePoE...');
+    await this.loadAuras();
+    console.log('Loading Support Gems from RePoE...');
+    await this.loadSupportGems();
+    console.log('Done!');
+
+    this.loading = false;
+  },
+
+  methods: {
+    async loadAuras() {
+      const res = await AurasServices.getAuras();
+      res.forEach((aura) => {
+        const id = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
+        this.auraStatic.set(id, new Aura(
+          id,
+          this.$getAuraStat(aura),
+          this.$getQualityStat(aura),
+          aura,
+        ));
+      });
+    },
+
+    async loadSupportGems() {
+      const res = await AurasServices.getSupportGems();
+
+      res.forEach((supportGem) => {
+        const id = supportGem.base_item.display_name.replaceAll(' ', '').replaceAll('Support', '').toLowerCase();
+        this.supportGemsStatic.set(id, new SupportGem(id, supportGem));
+      });
+    }
+  },
 });
 </script>
 
