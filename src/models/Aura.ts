@@ -6,6 +6,7 @@ export default class Aura {
   public stats: string[];
   public qualityStats: string[];
   public statsPerLevel: number[];
+  public isBanner: boolean;
 
   constructor(aura: any, stats: string[], qualityStats: string[]) {
     this.id = aura.active_skill.id;
@@ -13,6 +14,7 @@ export default class Aura {
     this.stats = stats;
     this.qualityStats = qualityStats;
     this.statsPerLevel = this.makeStatsPerLevel(aura);
+    this.isBanner = aura.stat_translation_file.includes('/banner_aura_skill');
   }
 
   private makeStatsPerLevel = (aura: any): number[] => {

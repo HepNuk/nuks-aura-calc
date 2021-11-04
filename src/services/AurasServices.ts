@@ -7,7 +7,8 @@ export default {
 
     return Object.values(json).filter((value: any) => {
       // Filter out non-aura skills
-      if (!value.stat_translation_file.includes('/aura_skill')) return false;
+      if (!value.stat_translation_file.includes('/aura_skill')
+        && !value.stat_translation_file.includes('/banner_aura_skill')) return false;
       // Filter out Vaal skills
       if (value.active_skill.display_name.includes('Vaal')) return false;
       // Filter out Royal skills
@@ -19,6 +20,8 @@ export default {
         || value.active_skill.id === 'vaal_aura_elemental_damage_healing'
         || value.active_skill.id === 'blood_sand_armour'
         || value.active_skill.id === 'physical_damage_aura') return false;
+
+      console.log(value);
       return true;
     });
   },

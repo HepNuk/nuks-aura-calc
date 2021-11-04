@@ -1,8 +1,10 @@
 export default class Translator {
   private translations: any;
+  private bannerTranslations: any;
 
-  constructor(translations: any) {
+  constructor(translations: any, bannerTranslations: any) {
     this.translations = translations;
+    this.bannerTranslations = bannerTranslations;
   }
 
   public getAuraStat = (aura: any): string[] => {
@@ -10,7 +12,13 @@ export default class Translator {
 
     aura.static.stats.forEach((stat: any) => {
       if (filterOutStats(stat.id)) {
-        const translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
+        let translation: any;
+
+        if (aura.stat_translation_file.includes('/banner_aura_skill')) {
+          translation = this.bannerTranslations.find((tr: any) => tr.ids.includes(stat.id));
+        } else {
+          translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
+        }
         stats.push(translation.English[0].string);
       }
     });
@@ -22,7 +30,13 @@ export default class Translator {
     const qualityStats: string[] = [];
 
     aura.static.quality_stats.forEach((stat: any) => {
-      const translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
+      let translation;
+
+      if (aura.stat_translation_file.includes('/banner_aura_skill')) {
+        translation = this.bannerTranslations.find((tr: any) => tr.ids.includes(stat.id));
+      } else {
+        translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
+      }
 
       qualityStats.push(translation.English[0].string);
     });
