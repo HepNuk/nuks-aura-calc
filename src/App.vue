@@ -25,8 +25,9 @@ export default defineComponent({
 
   async mounted() {
     this.loading = true;
-    console.log('Loading auras from RePoE...');
+    console.log('Loading Auras from RePoE...');
     await this.loadAuras();
+    console.log('Loading Support Gems from RePoE...');
     await this.loadSupportGems();
     console.log('Done!');
 

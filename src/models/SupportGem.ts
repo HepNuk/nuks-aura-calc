@@ -1,5 +1,3 @@
-import { filterOutStats, hasSecondaryValue } from '@/plugins/AuraTranslator';
-
 export default class Aura {
   public id: string;
   public displayName: string;
