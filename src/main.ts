@@ -8,7 +8,8 @@ AurasServices.getStatTranslation('stat_translations/aura_skill').then(async (tra
   const t = new AuraTranslator(translations, bannerTranslations);
 
   const app = createApp(App);
-  app.config.globalProperties.$t = t;
+  app.config.globalProperties.$getAuraStat = (aura: any) => t.getAuraStat(aura);
+  app.config.globalProperties.$getQualityStat = (aura: any) => t.getAuraStat(aura);
   app.mount('#app');
 });
 
@@ -16,6 +17,7 @@ AurasServices.getStatTranslation('stat_translations/aura_skill').then(async (tra
 // Global Module declarations
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
-    $t: AuraTranslator;
+    $getAuraStat: (aura: any) => string[];
+    $getQualityStat: (aura: any) => string[];
   }
 }

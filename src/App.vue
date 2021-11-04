@@ -26,8 +26,8 @@ export default defineComponent({
         const id = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
         this.auraStatic.set(id, new Aura(
           aura,
-          this.$t.getAuraStat(aura),
-          this.$t.getQualityStat(aura),
+          this.$getAuraStat(aura),
+          this.$getQualityStat(aura),
         ));
       });
 
