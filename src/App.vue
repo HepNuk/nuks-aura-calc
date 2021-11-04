@@ -15,13 +15,24 @@ export default defineComponent({
 
   data() {
     return {
+      loading: false as boolean,
+
       auraStatic: new Map() as Map<string, Aura>,
-      auraSkillTranslations: null as any,
     };
   },
 
   async mounted() {
-    AurasServices.getAuras().then((res: any[]) => {
+    this.loading = true;
+    console.log('Loading auras from RePoE...');
+    await this.loadAuras();
+    console.log('Done!');
+
+    this.loading = false;
+  },
+
+  methods: {
+    async loadAuras() {
+      const res = await AurasServices.getAuras();
       res.forEach((aura) => {
         const id = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
         this.auraStatic.set(id, new Aura(
@@ -30,9 +41,7 @@ export default defineComponent({
           this.$getQualityStat(aura),
         ));
       });
-
-      console.log(this.auraStatic);
-    });
+    },
   },
 });
 </script>

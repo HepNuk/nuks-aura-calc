@@ -6,7 +6,7 @@ export default {
     const json: JSON = await data.json();
 
     return Object.values(json).filter((value: any) => {
-      // Filter out non-aura skills
+      // Filter out non-aura and non-aura-banner skills
       if (!value.stat_translation_file.includes('/aura_skill')
         && !value.stat_translation_file.includes('/banner_aura_skill')) return false;
       // Filter out Vaal skills
@@ -21,7 +21,6 @@ export default {
         || value.active_skill.id === 'blood_sand_armour'
         || value.active_skill.id === 'physical_damage_aura') return false;
 
-      console.log(value);
       return true;
     });
   },
@@ -32,4 +31,3 @@ export default {
     return json;
   },
 };
-
