@@ -53,7 +53,7 @@ export default defineComponent({
 
       res.forEach((supportGem) => {
         const id = supportGem.base_item.display_name.replaceAll(' ', '').replaceAll('Support', '').toLowerCase();
-        const newsupportGem: SupportGem = new SupportGem(id, supportGem);
+        this.supportGemsStatic.set(id, new SupportGem(id, supportGem));
       });
     }
   },
