@@ -8,6 +8,7 @@ import { defineComponent } from 'vue';
 import AurasServices from './services/AurasServices';
 import Aura from './models/Aura';
 import SupportGem from './models/SupportGem';
+import PlayerAura from './models/PlayerAura';
 
 export default defineComponent({
   name: 'App',
@@ -20,6 +21,8 @@ export default defineComponent({
 
       auraStatic: new Map() as Map<string, Aura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
+
+      playerAuras: new Map() as Map<string, PlayerAura>,
     };
   },
 
@@ -31,10 +34,20 @@ export default defineComponent({
     await this.loadSupportGems();
     console.log('Done!');
 
+    this.testAura();
     this.loading = false;
   },
 
   methods: {
+    testAura() {
+      this.playerAuras.get('discipline')!.level = 2;
+      console.log(this.playerAuras.get('discipline')!.getStatLines(
+        this.auraStatic.get('discipline')!,
+        0,
+        this.supportGemsStatic,
+      ));
+    },
+
     async loadAuras() {
       const res = await AurasServices.getAuras();
       res.forEach((aura) => {
@@ -45,6 +58,8 @@ export default defineComponent({
           this.$getQualityStat(aura),
           aura,
         ));
+
+        this.playerAuras.set(id, new PlayerAura(id, aura.active_skill.display_name));
       });
     },
 

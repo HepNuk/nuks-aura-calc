@@ -32,8 +32,10 @@ export default {
       if (!gem.base_item || !gem.base_item.id) return false;
       // Get only Generosities, Empower and Enhance.
       if (gem.base_item.id.includes('SupportGemGenerosity')) return true;
-      if (gem.base_item.id.includes('SupportGemAdditionalQuality')) return true;
-      if (gem.base_item.id.includes('SupportGemAdditionalLevel')) return true;
+
+      // Empower and Enhanced not needed for now since we input Quality and Level manually
+      // if (gem.base_item.id.includes('SupportGemAdditionalQuality')) return true;
+      // if (gem.base_item.id.includes('SupportGemAdditionalLevel')) return true;
 
       return false;
     });

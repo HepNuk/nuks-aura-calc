@@ -5,7 +5,7 @@ export default class Aura {
   public displayName: string;
   public stats: string[];
   public qualityStats: string[];
-  public statsPerLevel: number[];
+  public statsPerLevel: any[];
   public isBanner: boolean;
 
   constructor(id: string, stats: string[], qualityStats: string[], aura: any) {
@@ -17,30 +17,32 @@ export default class Aura {
     this.isBanner = aura.stat_translation_file.includes('/banner_aura_skill');
   }
 
-  private makeStatsPerLevel = (aura: any): number[] => {
+  private makeStatsPerLevel = (aura: any): any[] => {
     const statsPerLevel: any[any] = [];
 
     let i = 0;
+    let j = 0;
     aura.static.stats.forEach((stat: any) => {
       if (stat.value && stat.value !== 0) {
         statsPerLevel.push({value: stat.value}) ;
-        i++;
+        j++;
       } else if (filterOutStats(stat.id)) {
         statsPerLevel.push([]);
         if (hasSecondaryValue(stat.id)) {
           Object.entries(aura.per_level).forEach((value: any, key: any): any => {
-            statsPerLevel[i].push([
+            statsPerLevel[j].push([
               value[1].stats[i],
               value[1].stats[i + 1],
             ]);
           });
         } else {
           Object.entries(aura.per_level).forEach((value: any, key: any): any => {
-            statsPerLevel[i].push([value[1].stats[i]]);
+            statsPerLevel[j].push([value[1].stats[i]]);
           });
         }
-        i++;
+        j++;
       }
+      i++;
     });
 
     return statsPerLevel;
