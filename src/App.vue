@@ -15,7 +15,7 @@ export default defineComponent({
 
   data() {
     return {
-      auraList: [] as Aura[],
+      auraStatic: new Map() as Map<string, Aura>,
       auraSkillTranslations: null as any,
     };
   },
@@ -23,11 +23,15 @@ export default defineComponent({
   async mounted() {
     AurasServices.getAuras().then((res: any[]) => {
       res.forEach((aura) => {
-        this.auraList.push(new Aura(
+        const id = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
+        this.auraStatic.set(id, new Aura(
           aura,
           this.$t.getAuraStat(aura),
+          this.$t.getQualityStat(aura),
         ));
       });
+
+      console.log(this.auraStatic);
     });
   },
 });

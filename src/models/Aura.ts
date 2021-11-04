@@ -1,20 +1,21 @@
-import StatPerLevel from './StatPerLevel';
 import { filterOutStats, hasSecondaryValue } from '@/plugins/AuraTranslator';
 
 export default class Aura {
   public id: string;
   public displayName: string;
   public stats: string[];
-  public statsPerLevel: number[][];
+  public qualityStats: string[];
+  public statsPerLevel: number[];
 
-  constructor(aura: any, stats: string[]) {
+  constructor(aura: any, stats: string[], qualityStats: string[]) {
     this.id = aura.active_skill.id;
     this.displayName = aura.active_skill.display_name;
     this.stats = stats;
+    this.qualityStats = qualityStats;
     this.statsPerLevel = this.makeStatsPerLevel(aura);
   }
 
-  private makeStatsPerLevel = (aura: any): number[][] => {
+  private makeStatsPerLevel = (aura: any): number[] => {
     const statsPerLevel: any[any] = [];
 
     let i = 0;
@@ -31,7 +32,6 @@ export default class Aura {
               value[1].stats[i + 1],
             ]);
           });
-          // i++;
         } else {
           Object.entries(aura.per_level).forEach((value: any, key: any): any => {
             statsPerLevel[i].push([value[1].stats[i]]);

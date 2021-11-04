@@ -13,10 +13,12 @@ export default {
       // Filter out Royal skills
       if (value.base_item.id.includes('Royal')) return false;
       // Filter out other skills that are classified as auras but are not buffing Auras
+      // [Pride] Excluded for now since calculating and running it are both stupid.
       if (value.active_skill.id === 'blinding_aura'
         || value.active_skill.id === 'chaos_degen_aura_unique'
         || value.active_skill.id === 'vaal_aura_elemental_damage_healing'
-        || value.active_skill.id === 'blood_sand_armour') return false;
+        || value.active_skill.id === 'blood_sand_armour'
+        || value.active_skill.id === 'physical_damage_aura') return false;
       return true;
     });
   },
