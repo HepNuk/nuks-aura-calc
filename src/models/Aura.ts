@@ -8,8 +8,8 @@ export default class Aura {
   public statsPerLevel: number[];
   public isBanner: boolean;
 
-  constructor(aura: any, stats: string[], qualityStats: string[]) {
-    this.id = aura.active_skill.id;
+  constructor(id: string, stats: string[], qualityStats: string[], aura: any) {
+    this.id = id;
     this.displayName = aura.active_skill.display_name;
     this.stats = stats;
     this.qualityStats = qualityStats;

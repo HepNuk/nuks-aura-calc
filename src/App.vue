@@ -7,6 +7,7 @@
 import { defineComponent } from 'vue';
 import AurasServices from './services/AurasServices';
 import Aura from './models/Aura';
+import SupportGem from './models/SupportGem';
 
 export default defineComponent({
   name: 'App',
@@ -18,6 +19,7 @@ export default defineComponent({
       loading: false as boolean,
 
       auraStatic: new Map() as Map<string, Aura>,
+      supportGemsStatic: new Map() as Map<string, SupportGem>,
     };
   },
 
@@ -25,6 +27,7 @@ export default defineComponent({
     this.loading = true;
     console.log('Loading auras from RePoE...');
     await this.loadAuras();
+    await this.loadSupportGems();
     console.log('Done!');
 
     this.loading = false;
@@ -36,12 +39,22 @@ export default defineComponent({
       res.forEach((aura) => {
         const id = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
         this.auraStatic.set(id, new Aura(
-          aura,
+          id,
           this.$getAuraStat(aura),
           this.$getQualityStat(aura),
+          aura,
         ));
       });
     },
+
+    async loadSupportGems() {
+      const res = await AurasServices.getSupportGems();
+
+      res.forEach((supportGem) => {
+        const id = supportGem.base_item.display_name.replaceAll(' ', '').replaceAll('Support', '').toLowerCase();
+        const newsupportGem: SupportGem = new SupportGem(id, supportGem);
+      });
+    }
   },
 });
 </script>
