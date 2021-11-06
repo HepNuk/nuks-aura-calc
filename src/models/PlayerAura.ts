@@ -35,12 +35,14 @@ export default class PlayerAura {
 
       if (aura.statsPerLevel[i].value) {
         const statValue: number = aura.statsPerLevel[i].value * (1 + (ae / 100));
-        line.replace('{0}', statValue.toString());
-        stats.push(line);
+        if (statValue < 0) line = this.handleNegativeValues(0, line);
+        line = line.replace('{0}', Math.abs(statValue).toString());
+
       } else {
         aura.statsPerLevel[i][level - 1].forEach((e: any, j: number) => {
           const statValue: number = e.value * (1 + (ae / 100));
-          line = line.replaceAll(`{${j}}`, statValue.toString());
+          if (statValue < 0) line = this.handleNegativeValues(i, line);
+          line = line.replace(`{${j}}`, Math.abs(statValue).toString());
         });
       }
       stats.push(line);
@@ -53,12 +55,14 @@ export default class PlayerAura {
     if (this.level === 0 || this.altQuality === 0 || this.quality === 0) return [];
 
     const ae: number = this.auraEffectForGem(auraEffect, supportGems);
-
     const qualityStats: string[] = [];
-    aura.qualityStats.forEach((qualityLine, i) => {
-      const line = qualityLine;
+    const aQual = this.altQuality;
+    aura.qualityStats[aQual].forEach((qualityLine, i) => {
+      const statValue: number = (aura.statsPerQuality[aQual][i] / 100) * (1 + (ae / 100));
+      let line = qualityLine;
+      if (statValue < 0) line = this.handleNegativeValues(0, qualityLine);
 
-      // quality
+      qualityStats.push(line.replace('{0}', Math.abs(statValue).toString()));
     });
 
     return qualityStats;
@@ -81,5 +85,32 @@ export default class PlayerAura {
 
   private auraEffectForGem(auraEffect: number, supportGems: Map<string, SupportGem>): number {
     return this.localAuraEffect + auraEffect + this.getGenerosityAuraEffect(supportGems);
+  }
+
+  private handleNegativeValues(statIndex: number, line: string): string {
+    const index = line.indexOf(`{${statIndex}}`);
+    if (index < 0) return line;
+
+    if (line.slice(index, index + 'faster'.length + 5).includes('faster')) {
+      const secondIndex: number = index + 'faster'.length + 5;
+      return line.slice(0, index)
+        + line.slice(index, secondIndex).replace('faster', 'slower')
+        + line.slice(secondIndex);
+
+    } else if (line.slice(index, index + 'increased'.length + 5).includes('increased')) {
+      const secondIndex: number = index + 'increased'.length + 5;
+
+      return line.slice(0, index)
+        + line.slice(index, secondIndex).replace('increased', 'decreased')
+        + line.slice(secondIndex);
+
+    } else if (line.slice(index, index + 'more'.length + 5).includes('more')) {
+      const secondIndex: number = index + 'more'.length + 5;
+      return line.slice(0, index)
+        + line.slice(index).replace('more', 'less')
+        + line.slice(secondIndex);
+    }
+
+    return line;
   }
 }

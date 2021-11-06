@@ -4,20 +4,22 @@ export default class Aura {
   public id: string;
   public displayName: string;
   public stats: string[];
-  public qualityStats: string[];
+  public qualityStats: string[][];
+  public statsPerQuality: any[];
   public statsPerLevel: any[];
   public isBanner: boolean;
 
-  constructor(id: string, stats: string[], qualityStats: string[], aura: any) {
+  constructor(id: string, stats: string[], qualityStats: string[][], aura: any) {
     this.id = id;
     this.displayName = aura.active_skill.display_name;
     this.stats = stats;
     this.qualityStats = qualityStats;
     this.statsPerLevel = this.makeStatsPerLevel(aura);
+    this.statsPerQuality = this.makeStatsPerQuality(aura);
     this.isBanner = aura.stat_translation_file.includes('/banner_aura_skill');
   }
 
-  private makeStatsPerLevel = (aura: any): any[] => {
+  private makeStatsPerLevel(aura: any): any[]  {
     const statsPerLevel: any[any] = [];
 
     let i = 0;
@@ -46,5 +48,21 @@ export default class Aura {
     });
 
     return statsPerLevel;
+  }
+
+  private makeStatsPerQuality(aura: any) {
+    const statsPerQuality: number[][] = [];
+
+    let currentSet: number = -1;
+    aura.static.quality_stats.forEach((stat: any) => {
+      if (stat.set > currentSet) {
+        currentSet++;
+        statsPerQuality.push([]);
+      }
+
+      statsPerQuality[currentSet].push(stat.value);
+    });
+
+    return statsPerQuality;
   }
 }

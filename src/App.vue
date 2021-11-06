@@ -40,18 +40,28 @@ export default defineComponent({
 
   methods: {
     testAura() {
-      this.playerAuras.get('discipline')!.level = 2;
+      const discpline = this.playerAuras.get('discipline')!;
+      discpline.level = 2;
+      discpline.altQuality = 2;
+      discpline.quality = 20;
+
       console.log(this.playerAuras.get('discipline')!.getStatLines(
         this.auraStatic.get('discipline')!,
         0,
         this.supportGemsStatic,
       ));
+
+      console.log(this.playerAuras.get('discipline')!.getQualityStatLines(
+        this.auraStatic.get('discipline')!,
+        100,
+        this.supportGemsStatic,
+      ));
     },
 
     async loadAuras() {
-      const res = await AurasServices.getAuras();
+      const res: any[] = await AurasServices.getAuras();
       res.forEach((aura) => {
-        const id = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
+        const id: string = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
         this.auraStatic.set(id, new Aura(
           id,
           this.$getAuraStat(aura),
@@ -64,10 +74,10 @@ export default defineComponent({
     },
 
     async loadSupportGems() {
-      const res = await AurasServices.getSupportGems();
+      const res: any[] = await AurasServices.getSupportGems();
 
       res.forEach((supportGem) => {
-        const id = supportGem.base_item.display_name.replaceAll(' ', '').replaceAll('Support', '').toLowerCase();
+        const id: string = supportGem.base_item.display_name.replaceAll(' ', '').replace('Support', '').toLowerCase();
         this.supportGemsStatic.set(id, new SupportGem(id, supportGem));
       });
     }

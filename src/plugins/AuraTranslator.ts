@@ -26,19 +26,23 @@ export default class Translator {
     return stats;
   }
 
-  public getQualityStat = (aura: any): string[] => {
-    const qualityStats: string[] = [];
+  public getQualityStat = (aura: any): string[][] => {
+    const qualityStats: string[][] = [];
 
+    let currentSet: number = -1;
     aura.static.quality_stats.forEach((stat: any) => {
-      let translation;
+      if (stat.set > currentSet) {
+        currentSet++;
+        qualityStats.push([]);
+      }
 
+      let translation: any;
       if (aura.stat_translation_file.includes('/banner_aura_skill')) {
         translation = this.bannerTranslations.find((tr: any) => tr.ids.includes(stat.id));
       } else {
         translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
       }
-
-      qualityStats.push(translation.English[0].string);
+      qualityStats[currentSet].push(translation.English[0].string);
     });
 
     return qualityStats;
