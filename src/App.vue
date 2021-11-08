@@ -28,24 +28,25 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    globalAuraEffect(): number {
+      return this.passiveTree.getAuraEffect();
+    },
+  },
+
   async mounted() {
     this.loading = true;
     console.log('Loading Auras from RePoE...');
     await this.loadAuras();
+
     console.log('Loading Support Gems from RePoE...');
     await this.loadSupportGems();
+
+    console.log('Loading Tree Data from GGG...');
+    await this.loadSupportGems();
+
     console.log('Done!');
 
-
-    const nodes = await AurasServices.getPassiveTreeNodes();
-    console.log(nodes)
-
-    nodes.forEach((node) => {
-      this.passiveTree.addNewNode(node);
-    });
-
-    console.log(this.passiveTree);
-    console.log(this.passiveTree.getAuraEffect());
     this.testAura();
     this.loading = false;
   },
@@ -92,7 +93,16 @@ export default defineComponent({
         const id: string = supportGem.base_item.display_name.replaceAll(' ', '').replace('Support', '').toLowerCase();
         this.supportGemsStatic.set(id, new SupportGem(id, supportGem));
       });
-    }
+    },
+
+    async loadTreeData() {
+      const res: any[] = await AurasServices.getPassiveTreeNodes();
+
+      res.forEach((node) => {
+        this.passiveTree.addNewNode(node);
+      });
+    },
+
   },
 });
 </script>
