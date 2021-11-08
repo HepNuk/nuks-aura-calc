@@ -34,6 +34,8 @@ export default defineComponent({
     await this.loadSupportGems();
     console.log('Done!');
 
+
+    AurasServices.getPassiveTree();
     this.testAura();
     this.loading = false;
   },

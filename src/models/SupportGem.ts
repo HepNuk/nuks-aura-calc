@@ -1,4 +1,4 @@
-export default class Aura {
+export default class SupportGem {
   public id: string;
   public displayName: string;
   public statsPerLevel: number[];
