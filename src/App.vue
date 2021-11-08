@@ -9,6 +9,7 @@ import AurasServices from './services/AurasServices';
 import Aura from './models/Aura';
 import SupportGem from './models/SupportGem';
 import PlayerAura from './models/PlayerAura';
+import Tree from './models/Tree';
 
 export default defineComponent({
   name: 'App',
@@ -21,6 +22,7 @@ export default defineComponent({
 
       auraStatic: new Map() as Map<string, Aura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
+      passiveTree: new Tree(),
 
       playerAuras: new Map() as Map<string, PlayerAura>,
     };
@@ -35,7 +37,15 @@ export default defineComponent({
     console.log('Done!');
 
 
-    AurasServices.getPassiveTree();
+    const nodes = await AurasServices.getPassiveTreeNodes();
+    console.log(nodes)
+
+    nodes.forEach((node) => {
+      this.passiveTree.addNewNode(node);
+    });
+
+    console.log(this.passiveTree);
+    console.log(this.passiveTree.getAuraEffect());
     this.testAura();
     this.loading = false;
   },

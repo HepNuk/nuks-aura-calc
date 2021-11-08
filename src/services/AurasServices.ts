@@ -26,8 +26,6 @@ const AURA_NODE_IDS = [
   '34513',  // Aura Effect Small
 
   '36949',  // Devotion
-
-  '6265',
 ]
 
 export default {
@@ -72,10 +70,17 @@ export default {
     return json;
   },
 
-  getPassiveTree: async (): Promise<any> => {
+  getPassiveTreeNodes: async (): Promise<any[]> => {
     const data: any = await fetch(PASSIVE_TREE);
-    const json: JSON = await data.json();
+    const json: any = await data.json();
+    const nodes: any = [];
 
-    console.log(json);
+    // return Object.keys(json.nodes).filter((key) => AURA_NODE_IDS.includes(key));
+
+    Object.entries(json.nodes).filter(([key, value]) => {
+      if (AURA_NODE_IDS.includes(key)) nodes.push(value);
+    });
+
+    return nodes;
   }
 };
