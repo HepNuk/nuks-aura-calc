@@ -9,6 +9,7 @@ import AurasServices from './services/AurasServices';
 import Aura from './models/Aura';
 import SupportGem from './models/SupportGem';
 import PlayerAura from './models/PlayerAura';
+import Tree from './models/Tree';
 
 export default defineComponent({
   name: 'App',
@@ -21,17 +22,29 @@ export default defineComponent({
 
       auraStatic: new Map() as Map<string, Aura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
+      passiveTree: new Tree(),
 
       playerAuras: new Map() as Map<string, PlayerAura>,
     };
+  },
+
+  computed: {
+    globalAuraEffect(): number {
+      return this.passiveTree.getAuraEffect();
+    },
   },
 
   async mounted() {
     this.loading = true;
     console.log('Loading Auras from RePoE...');
     await this.loadAuras();
+
     console.log('Loading Support Gems from RePoE...');
     await this.loadSupportGems();
+
+    console.log('Loading Tree Data from GGG...');
+    await this.loadSupportGems();
+
     console.log('Done!');
 
     this.testAura();
@@ -80,7 +93,16 @@ export default defineComponent({
         const id: string = supportGem.base_item.display_name.replaceAll(' ', '').replace('Support', '').toLowerCase();
         this.supportGemsStatic.set(id, new SupportGem(id, supportGem));
       });
-    }
+    },
+
+    async loadTreeData() {
+      const res: any[] = await AurasServices.getPassiveTreeNodes();
+
+      res.forEach((node) => {
+        this.passiveTree.addNewNode(node);
+      });
+    },
+
   },
 });
 </script>

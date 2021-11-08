@@ -1,5 +1,7 @@
+const PASSIVE_TREE: string = 'https://raw.githubusercontent.com/grindinggear/skilltree-export/master/data.json';
 const REPOE: string = 'https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/';
 const GEMS: string = 'gems.min.json';
+
 const FILTER: string[] = [
   'blinding_aura',
   'chaos_degen_aura_unique',
@@ -7,6 +9,24 @@ const FILTER: string[] = [
   'blood_sand_armour',
   'physical_damage_aura', // [Pride] Excluded for now since calculating and running it are both stupid.
 ];
+
+const AURA_NODE_IDS = [
+  '32932',  // Sovereignty
+  '9392',   // Aura Effect Small
+
+  '12143',  // Influence
+  '55571',  // Aura Effect Small
+
+  '65097',  // Leaderhip
+  '57736',  // Aura Effect Small
+
+  '6799',   // Charisma
+
+  '33718',  // Chamption of the Cause
+  '34513',  // Aura Effect Small
+
+  '36949',  // Devotion
+]
 
 export default {
   getAuras: async (): Promise<any[]> => {
@@ -49,4 +69,18 @@ export default {
     const json: JSON = await data.json();
     return json;
   },
+
+  getPassiveTreeNodes: async (): Promise<any[]> => {
+    const data: any = await fetch(PASSIVE_TREE);
+    const json: any = await data.json();
+    const nodes: any = [];
+
+    // return Object.keys(json.nodes).filter((key) => AURA_NODE_IDS.includes(key));
+
+    Object.entries(json.nodes).filter(([key, value]) => {
+      if (AURA_NODE_IDS.includes(key)) nodes.push(value);
+    });
+
+    return nodes;
+  }
 };
