@@ -10,6 +10,7 @@ import Aura from './models/Aura';
 import SupportGem from './models/SupportGem';
 import PlayerAura from './models/PlayerAura';
 import Tree from './models/Tree';
+import Ascendancy from './models/Ascendancy';
 
 export default defineComponent({
   name: 'App',
@@ -23,6 +24,7 @@ export default defineComponent({
       auraStatic: new Map() as Map<string, Aura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
       passiveTree: new Tree(),
+      ascendancies: new Ascendancy(),
 
       playerAuras: new Map() as Map<string, PlayerAura>,
     };
@@ -30,7 +32,7 @@ export default defineComponent({
 
   computed: {
     globalAuraEffect(): number {
-      return this.passiveTree.getAuraEffect();
+      return this.passiveTree.getAuraEffect() + this.ascendancies.getAuraEffect();
     },
   },
 
@@ -43,7 +45,7 @@ export default defineComponent({
     await this.loadSupportGems();
 
     console.log('Loading Tree Data from GGG...');
-    await this.loadSupportGems();
+    await this.loadTreeData();
 
     console.log('Done!');
 
@@ -69,6 +71,10 @@ export default defineComponent({
         100,
         this.supportGemsStatic,
       ));
+      this.ascendancies.ascendancy = 'necromancer';
+      console.log(this.passiveTree);
+      console.log(this.ascendancies);
+      console.log(this.ascendancies.getAuraEffect());
     },
 
     async loadAuras() {
@@ -96,10 +102,14 @@ export default defineComponent({
     },
 
     async loadTreeData() {
-      const res: any[] = await AurasServices.getPassiveTreeNodes();
-
-      res.forEach((node) => {
+      const res: any = await AurasServices.getPassiveTreeNodes();
+      console.log(res);
+      res.nodes.forEach((node: any) => {
         this.passiveTree.addNewNode(node);
+      });
+
+      res.ascNodes.forEach((ascNodes: any) => {
+        this.ascendancies.addNewNode(ascNodes);
       });
     },
 
