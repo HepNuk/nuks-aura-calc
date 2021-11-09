@@ -6,7 +6,8 @@ const STAT_REGEX = {
   aurasFromSkill: /Auras from your Skills grant \+?([0-9.]*)% [a-zA-Z ]*you and Allies/,
   takeIncreasedDamage: /take (\d*)% increased Damage/,
   grantsXOfReservation: /Grants [a-zA-Z ]*(\d*)% of your [a-zA-z ]* and nearby Allies/,
-  youAndNearbyAllies: /(?:Y|y)ou and nearby Allies (?:deal|have) \+?(\d*)% [a-zA-Z ]*/
+  youAndNearbyAllies: /(?:N|n)earby Allies (?:deal|have) \+?(\d*)% [a-zA-Z ,]*/,
+  nearbyAlliesSpecial: /Nearby Allies ([a-zA-Z]*) Enemies for 4 seconds on Hit/
 };
 
 export default class AscNode extends AbsrtactNode {
@@ -40,31 +41,25 @@ export default class AscNode extends AbsrtactNode {
     stats.some((stat, i) => {
       stat = stat.replace('\n', ' ');
       this.untranslatedStats.push(stat);
-
       if (STAT_REGEX.auraEffect.test(stat)) {
         this.setupAuraEffect(stat);
+
       } else if (STAT_REGEX.aurasFromSkill.test(stat)) {
         this.setupAurasFromSkill(stat);
+
       } else if (STAT_REGEX.takeIncreasedDamage.test(stat)) {
-
-        this.setBooleans(false, false, );
-
-        value = this.parseValue(stat.match(STAT_REGEX.takeIncreasedDamage));
+        this.setupTakeIncreasedDamage(stat);
 
       } else if (STAT_REGEX.grantsXOfReservation.test(stat)) {
-        const reservationType = stat.match(/(Life|Mana)/)[1];
-        this.setBooleans(false, false, reservationType);
-        value = this.parseValue(stat.match(STAT_REGEX.grantsXOfReservation));
+        this.setupGrantsXOfReservation(stat);
 
       } else if (STAT_REGEX.youAndNearbyAllies.test(stat)) {
-        this.setBooleans(false, false);
+        this.setupYouAndNearbyAllies(stat);
 
-        value = this.parseValue(stat.match(STAT_REGEX.youAndNearbyAllies));
-
+      } else if (STAT_REGEX.nearbyAlliesSpecial.test(stat)) {
+        this.setupNearbyAlliesSpecial(stat);
       }
     });
-
-    // console.log(this)
   }
 
   private parseValue(regexMatch: string[]) {
@@ -83,12 +78,44 @@ export default class AscNode extends AbsrtactNode {
 
     this.values.push(this.parseValue(stat.match(STAT_REGEX.auraEffect)));
     this.statTexts.push(stat);
-  } 
+  }
 
   private setupAurasFromSkill(stat: string) {
     this.setBooleans(true);
     this.values.push(this.parseValue(stat.match(STAT_REGEX.aurasFromSkill)));
     const regex = stat.match(/Auras from your Skills grant (\+?)(?:[0-9.]*)*([a-zA-Z %]*) to you and Allies/);
     this.statTexts.push(regex[1] + '{0}' + regex[2]);
+  }
+
+  private setupTakeIncreasedDamage(stat: string) {
+    this.setBooleans(false, false);
+
+    const value = this.parseValue(stat.match(STAT_REGEX.takeIncreasedDamage));
+    this.values.push(value);
+    this.statTexts.push(`Enemies take ${value}% increased Damage`);
+  }
+
+  private setupGrantsXOfReservation(stat: string) {
+    const reservationType = stat.match(/(Life|Mana)/)[1];
+    const scalingStat = stat.match(/(Armour|maximum Energy Shield)/)[1];
+    this.setBooleans(false, false, reservationType);
+    const value = this.parseValue(stat.match(STAT_REGEX.grantsXOfReservation));
+    this.values.push(value);
+    this.statTexts.push(`+{0} to ${scalingStat}`);
+  }
+
+  private setupYouAndNearbyAllies(stat: string) {
+    this.setBooleans(false, false);
+    const regex = stat.match(/\+?\d*%[a-zA-Z ,]*/);
+    const value = this.parseValue(stat.match(STAT_REGEX.youAndNearbyAllies));
+    this.values.push(value);
+    this.statTexts.push(regex[0]);
+  }
+
+  private setupNearbyAlliesSpecial(stat: string) {
+    this.setBooleans();
+    const regex = stat.match(STAT_REGEX.nearbyAlliesSpecial);
+    this.values.push(0);
+    this.statTexts.push(`Nearby Enemies are ${regex[1]}`);
   }
 }

@@ -32,7 +32,7 @@ export default defineComponent({
 
   computed: {
     globalAuraEffect(): number {
-      return this.passiveTree.getAuraEffect();
+      return this.passiveTree.getAuraEffect() + this.ascendancies.getAuraEffect();
     },
   },
 
@@ -71,8 +71,10 @@ export default defineComponent({
         100,
         this.supportGemsStatic,
       ));
-
+      this.ascendancies.ascendancy = 'necromancer';
       console.log(this.passiveTree);
+      console.log(this.ascendancies);
+      console.log(this.ascendancies.getAuraEffect());
     },
 
     async loadAuras() {
@@ -108,7 +110,7 @@ export default defineComponent({
 
       res.ascNodes.forEach((ascNodes: any) => {
         this.ascendancies.addNewNode(ascNodes);
-      })
+      });
     },
 
   },
