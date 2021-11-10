@@ -3,7 +3,7 @@
     <div class="aura">
       <div class="aura-row">
         <div class="left-group">
-          <img v-if="require(`@/assets/img/auras/${playerAura.id}.png`)" :src="require(`@/assets/img/auras/${playerAura.id}.png`)">
+          <img :src="auraIcon">
           <span class="aura-title">
             {{ playerAura.displayName }}
           </span>
@@ -22,7 +22,7 @@
 
       <div class="aura-row">
         <div class="left-group">
-          <img v-if="require(`@/assets/img/gems/${playerAura.id}.png`)" :src="require(`@/assets/img/gems/${playerAura.id}.png`)">
+          <img :src="gemIcon">
         </div>
 
         <div class="right-group">
@@ -76,6 +76,16 @@ export default defineComponent({
         case 1: return 40;
         case 2: return 20;
       }
+    },
+
+    auraIcon(): string {
+      try { return require(`@/assets/img/auras/${this.playerAura.id}.png`); }
+      catch { return require('@/assets/img/auras/missing.png'); }
+    },
+
+    gemIcon(): string {
+      try { return require(`@/assets/img/gems/${this.playerAura.id}.png`); }
+      catch { return require('@/assets/img/gems/missing.png'); }
     }
   },
 
