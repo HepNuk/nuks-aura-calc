@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="aura-app">
+    <Header />
   </div>
 </template>
 
@@ -11,10 +12,12 @@ import SupportGem from './models/SupportGem';
 import PlayerAura from './models/PlayerAura';
 import Tree from './models/Tree';
 import Ascendancy from './models/Ascendancy';
+import Header from './components/shared/Header.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+    Header
   },
 
   data() {
@@ -49,7 +52,7 @@ export default defineComponent({
 
     console.log('Done!');
 
-    this.testAura();
+    // this.testAura();
     this.loading = false;
   },
 
@@ -103,7 +106,6 @@ export default defineComponent({
 
     async loadTreeData() {
       const res: any = await AurasServices.getPassiveTreeNodes();
-      console.log(res);
       res.nodes.forEach((node: any) => {
         this.passiveTree.addNewNode(node);
       });
@@ -117,13 +119,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import '@/assets/css/styles.scss';
+
 </style>

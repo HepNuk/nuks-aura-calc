@@ -1,28 +1,29 @@
 @font-face {
     font-family: itemFont;
-    src: url(../fonts/Fontin-Bold.ttf);
+    src: url(~@/assets/fonts/Fontin-Bold.ttf)
 }
 
 body {
+  margin: 0;
   padding: 15px;
   background-color: #58606b;
 }
 
-.app {
+.aura-app {
   font-family: itemFont;
   padding: 1px;
   color: rgb(255, 255, 255);
 }
 
-.header {
+.title-header {
   height: 100%;
   padding-left: 10px;
-  padding-top: 5px;
+  // padding-top: 5px;
   background-color: #373d44;
   border-radius: 6px;
 }
 
-.content {
+.content-box {
   padding: 10px !important;
   background-color: #373d44;
   border-radius: 6px;
