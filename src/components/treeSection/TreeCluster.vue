@@ -1,14 +1,12 @@
 <template>
   <div class="tree-cluster-label">
-    <div class="cluster">
       <NotableNode class="node mb-1" :notable="cluster.notable"/>
       <SmallNode 
         v-for="(node, i) in cluster.smallNodes"
         :key="'smallNode-' + i"
         :node="node"
-        class="node" 
+        class="small-node" 
       />
-    </div>
   </div>
 </template>
 
@@ -44,18 +42,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.tree-cluster-label {
-  padding: 0.4em;
-}
-.cluster {
-  background-color: #111;
-  border-radius: 5px;
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-.node {
-  height: 35px;
-  width: 100%;
+.small-node {
+  padding-bottom: 0.5rem;
 }
 
 </style>

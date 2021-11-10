@@ -1,10 +1,8 @@
 <template>
-  <label class="jewel-label">
-    <div class="jewel">
-      <img :src="img">
-      <slot/>
-    </div>
-  </label>
+  <div class="jewel">
+    <img :src="img">
+    <slot/>
+  </div>
 </template>
 
 <script lang="ts">

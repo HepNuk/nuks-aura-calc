@@ -1,13 +1,12 @@
 <template>
-  <div class="aura-section row">
-    <Col
-      v-for="aura in auras.entries()"
-      :key="aura[0]"
-      :cols="cols"
+  <div class="row">
+    <Col 
+      v-for="acsendancy in ascendancies.ascendancyTrees"
+      :key="acsendancy[0]"
     >
-      <AuraLabel
-        :key="aura[0]"
-        :aura="aura[1]"
+      <AscendancyCluster
+        :key="acsendancy[0]"
+        :acsendancy="acsendancy[1]"
       />
     </Col>
   </div>
@@ -18,10 +17,10 @@ import { defineComponent, inject } from 'vue';
 import { Vue3Mq } from '@/types';
 
 import Col from '@/components/shared/Col.vue';
-import AuraLabel from './AuraLabel.vue';
+import AscendancyCluster from './AscendancyCluster.vue';
 
 export default defineComponent({
-  name: 'AuraSection',
+  name: 'AscendancySection',
   setup() {
     return {
       mq: inject('mq') as Vue3Mq,
@@ -30,18 +29,18 @@ export default defineComponent({
 
   components: {
     Col,
-    AuraLabel,
+    AscendancyCluster,
   },
 
   props: {
-    auras: {
+    ascendancies: {
       type: Object,
       require: true,
     },
   },
 
   computed: {
-    cols(): string {
+    cols() {
       switch (this.mq.current) {
         case 'sm': return 'col-12';
         case 'md': return 'col-6';
@@ -52,7 +51,7 @@ export default defineComponent({
   },
 
   mounted() {
-    console.log(this.auras);
+    console.log(this.ascendancies);
   },
 
   methods: {
@@ -62,4 +61,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+
 </style>
