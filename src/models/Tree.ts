@@ -73,6 +73,10 @@ export default class Tree {
       if (node.active) ae += node.value;
     });
 
+    ae += this.timelessJewel;
+    ae += this.clusterJewels;
+    if (this.potency) ae += 3; // FIXME: Make Constant or fetch data.
+
     return ae;
   }
 
