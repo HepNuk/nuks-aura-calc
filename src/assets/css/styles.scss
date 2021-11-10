@@ -38,3 +38,26 @@ body {
   border-radius: 6px;
 }
 
+select{
+  border: 1px solid #ccc;
+  background: #222;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  padding: 2px;
+  width: 95px;
+  margin-right: 3px;
+  height: 27px;
+}
+
+input[type=number]{
+  border: 1px solid #ccc;
+  background: #222;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  padding: 0 2px;
+  width: 50px;
+  margin-right: 3px;
+}
+

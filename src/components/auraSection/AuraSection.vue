@@ -1,21 +1,23 @@
 <template>
   <div class="aura-labels m-0 row">
     <AuraLabel
-      v-for="(playerAura) in playerAuras.entries()"
+      v-for="playerAura in playerAuras.entries()"
       :class="cols"
       :key="playerAura[0]"
       :player-aura="playerAura[1]"
+      
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent, inject, PropType } from 'vue';
 import { Vue3Mq } from '@/types';
 
 import AuraLabel from './AuraLabel.vue';
 
 export default defineComponent({
+  name: 'AuraSection',
   setup() {
     return {
       mq: inject('mq') as Vue3Mq,
@@ -28,6 +30,11 @@ export default defineComponent({
 
   props: {
     playerAuras: {
+      type: Object,
+      require: true,
+    },
+
+    auraStatic: {
       type: Map,
       require: true,
     }

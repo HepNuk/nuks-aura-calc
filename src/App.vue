@@ -5,7 +5,9 @@
 
   <div class="d-flex">
     <div class="flex-grow-1 me-3">
-      <AuraSection v-if="playerAuras.size > 0" class="content-box" :player-auras="playerAuras"/>
+      <template v-if="!loading">
+        <AuraSection v-if="playerAuras.size > 0" class="content-box" :player-auras="playerAuras" :aura-static="auraStatic"/>
+      </template>
     </div>
 
     <div class="justify-content-center">
