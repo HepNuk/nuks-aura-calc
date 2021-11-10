@@ -17,9 +17,10 @@ AurasServices.getStatTranslation('stat_translations/aura_skill').then(async (tra
   app.use(Vue3Mq, {
     breakpoints: {
       xs: 0,
-      sm: 576,
+      sm: 1000,
       md: 1375,
       lg: 1765,
+      xl: 2100,
   }});
   app.mount('#app');
 });

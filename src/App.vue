@@ -7,6 +7,7 @@
     <div class="flex-grow-1 me-3">
       <template v-if="!loading">
         <AuraSection v-if="playerAuras.size > 0" class="content-box" :player-auras="playerAuras" :aura-static="auraStatic"/>
+        <TreeSection v-if="passiveTree.treeClusters.size > 0" class="content-box" :passive-tree="passiveTree" />
       </template>
     </div>
 
@@ -30,12 +31,14 @@ import Ascendancy from './models/Ascendancy';
 
 import Header from './components/shared/Header.vue';
 import AuraSection from './components/auraSection/AuraSection.vue';
+import TreeSection from './components/treeSection/TreeSection.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     Header,
     AuraSection,
+    TreeSection,
   },
 
   data() {

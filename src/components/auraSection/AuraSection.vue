@@ -1,11 +1,11 @@
 <template>
-  <div class="aura-labels m-0 row">
+  <div class="aura-section row">
     <AuraLabel
       v-for="playerAura in playerAuras.entries()"
-      :class="cols"
       :key="playerAura[0]"
       :player-aura="playerAura[1]"
       :alt-quality-count="auraStatic.get(playerAura[0]).qualityStats.length"
+      :class="cols"
     />
   </div>
 </template>
@@ -46,6 +46,7 @@ export default defineComponent({
         case 'sm': return 'col-12';
         case 'md': return 'col-6';
         case 'lg': return 'col-4';
+        case 'xl': return 'col-3';
       }
     },
   },
