@@ -1,14 +1,32 @@
 <template>
-  <div class="title-header p-2">
-    <h1>Nuk's PoE Aura stats calculator | WIP</h1>
-    <p class="mb-0">
+  <div class="title-header px-3 py-2">
+    <h1>{{ title }}</h1>
+    <p v-if="version" class="mb-0">
       <fa :icon="['fa','info-circle']"/>
-      Updated for Path of Exile version 3.16
+      for Path of Exile version {{ version }}
     </p>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  props: {
+    title: {
+      type: String,
+      require: true,
+    },
+
+    version: {
+      type: String,
+      require: false,
+      default: null,
+    }
+  }
+});
+
 </script>
+
 <style lang="scss">
 </style>

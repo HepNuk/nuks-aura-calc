@@ -68,6 +68,8 @@ export default class PlayerAura {
     return qualityStats;
   }
 
+  // Private
+
   private getGenerosityAuraEffect(supportGems: Map<string, SupportGem>): number {
     switch (this.generosityType) {
       case 1:

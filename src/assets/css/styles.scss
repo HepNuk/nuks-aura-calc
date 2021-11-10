@@ -6,19 +6,17 @@
 body {
   margin: 0;
   padding: 15px;
-  background-color: #58606b;
+  background-color: #58606b; 
+  font-family: itemFont;
 }
 
 .aura-app {
-  font-family: itemFont;
   padding: 1px;
-  color: rgb(255, 255, 255);
+  color: #FFF;
 }
 
 .title-header {
   height: 100%;
-  padding-left: 10px;
-  // padding-top: 5px;
   background-color: #373d44;
   border-radius: 6px;
 }
@@ -27,9 +25,10 @@ body {
   padding: 10px !important;
   background-color: #373d44;
   border-radius: 6px;
+  margin-bottom: 0.5em;
 }
 
-.output-stats {
+.output-stats { 
   padding: 15px;
   min-width: 475px;
   max-height: 820px;

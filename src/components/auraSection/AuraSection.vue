@@ -1,0 +1,57 @@
+<template>
+  <div class="aura-labels m-0 row">
+    <AuraLabel
+      v-for="(playerAura) in playerAuras.entries()"
+      :class="cols"
+      :key="playerAura[0]"
+      :player-aura="playerAura[1]"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, inject } from 'vue';
+import { Vue3Mq } from '@/types';
+
+import AuraLabel from './AuraLabel.vue';
+
+export default defineComponent({
+  setup() {
+    return {
+      mq: inject('mq') as Vue3Mq,
+    };
+  },
+
+  components: {
+    AuraLabel,
+  },
+
+  props: {
+    playerAuras: {
+      type: Map,
+      require: true,
+    }
+  },
+
+  computed: {
+    cols() {
+      switch (this.mq.current) {
+        case 'sm': return 'col-12';
+        case 'md': return 'col-6';
+        case 'lg': return 'col-4';
+      }
+    },
+  },
+
+  mounted() {
+    console.log(this.playerAuras);
+  },
+
+  methods: {
+  },
+});
+
+</script>
+
+<style lang="scss">
+</style>

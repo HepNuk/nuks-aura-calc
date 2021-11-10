@@ -1,23 +1,39 @@
 <template>
-  <div class="aura-app">
-    <Header />
+  <div class="aura-app mb-2">
+    <Header title="Nuk's PoE Aura stats calculator | WIP" version="3.16"/>
+  </div>
+
+  <div class="d-flex">
+    <div class="flex-grow-1 me-3">
+      <AuraSection v-if="playerAuras.size > 0" class="content-box" :player-auras="playerAuras"/>
+    </div>
+
+    <div class="justify-content-center">
+      <div class="output-stats sticky-top">
+        
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import AurasServices from './services/AurasServices';
 import Aura from './models/Aura';
 import SupportGem from './models/SupportGem';
 import PlayerAura from './models/PlayerAura';
 import Tree from './models/Tree';
 import Ascendancy from './models/Ascendancy';
+
 import Header from './components/shared/Header.vue';
+import AuraSection from './components/auraSection/AuraSection.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    Header
+    Header,
+    AuraSection,
   },
 
   data() {
@@ -82,6 +98,13 @@ export default defineComponent({
 
     async loadAuras() {
       const res: any[] = await AurasServices.getAuras();
+
+      // Sort alphbetically
+      res.sort((a, b) => {
+        if (a.active_skill.display_name < b.active_skill.display_name) return -1;
+        return 1;
+      });
+
       res.forEach((aura) => {
         const id: string = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
         this.auraStatic.set(id, new Aura(
@@ -121,5 +144,5 @@ export default defineComponent({
 
 <style lang="scss">
 @import '@/assets/css/styles.scss';
-
+.sticky-top { top: 0.5em; }
 </style>
