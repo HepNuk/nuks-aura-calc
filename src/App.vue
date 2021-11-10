@@ -6,7 +6,7 @@
   <div class="d-flex">
     <div class="flex-grow-1 me-3">
       <template v-if="!loading">
-        <AuraSection v-if="playerAuras.size > 0" class="content-box" :player-auras="playerAuras" :aura-static="auraStatic"/>
+        <AuraSection v-if="auras.size > 0" class="content-box" :auras="auras"/>
         <TreeSection v-if="passiveTree.treeClusters.size > 0" class="content-box" :passive-tree="passiveTree" />
       </template>
     </div>
@@ -45,12 +45,11 @@ export default defineComponent({
     return {
       loading: false as boolean,
 
-      auraStatic: new Map() as Map<string, Aura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
       passiveTree: new Tree(),
       ascendancies: new Ascendancy(),
 
-      playerAuras: new Map() as Map<string, PlayerAura>,
+      auras: new Map() as Map<string, PlayerAura>,
     };
   },
 
@@ -79,19 +78,17 @@ export default defineComponent({
 
   methods: {
     testAura() {
-      const discpline = this.playerAuras.get('discipline')!;
+      const discpline = this.auras.get('discipline')!;
       discpline.level = 2;
       discpline.altQuality = 2;
       discpline.quality = 20;
 
-      console.log(this.playerAuras.get('discipline')!.getStatLines(
-        this.auraStatic.get('discipline')!,
+      console.log(this.auras.get('discipline')!.getStatLines(
         0,
         this.supportGemsStatic,
       ));
 
-      console.log(this.playerAuras.get('discipline')!.getQualityStatLines(
-        this.auraStatic.get('discipline')!,
+      console.log(this.auras.get('discipline')!.getQualityStatLines(
         100,
         this.supportGemsStatic,
       ));
@@ -112,14 +109,15 @@ export default defineComponent({
 
       res.forEach((aura) => {
         const id: string = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
-        this.auraStatic.set(id, new Aura(
+
+        const auraDetail = new Aura(
           id,
           this.$getAuraStat(aura),
           this.$getQualityStat(aura),
           aura,
-        ));
+        );
 
-        this.playerAuras.set(id, new PlayerAura(id, aura.active_skill.display_name));
+        this.auras.set(id, new PlayerAura(id, auraDetail));
       });
     },
 

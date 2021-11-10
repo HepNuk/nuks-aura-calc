@@ -5,18 +5,18 @@
         <div class="left-group">
           <img :src="auraIcon">
           <span class="aura-title">
-            {{ playerAura.displayName }}
+            {{ aura.displayName }}
           </span>
         </div>
 
         <div class="right-group">
           <img src="@/assets/img/gems/generosity.png">:
-          <select v-model="playerAura.generosityType">
+          <select v-model="aura.generosityType">
             <option :value="0">None</option>
             <option :value="1">Generosity</option>
             <option :value="2">Awakened</option>2
           </select>
-          <input v-model="playerAura.generosityLevel" type="number" min="0" :max="maxGenerosityLevel" placeholder="Lvl" >
+          <input v-model="aura.generosityLevel" type="number" min="0" :max="maxGenerosityLevel" placeholder="Lvl" >
         </div>
       </div>
 
@@ -27,14 +27,14 @@
 
         <div class="right-group">
           <span class="details">AE:</span>
-          <input v-model="playerAura.localAuraEffect" type="number" min="0" max="100" placeholder="AE">
+          <input v-model="aura.localAuraEffect" type="number" min="0" max="100" placeholder="AE">
 
           <span class="details">Lvl:</span>
-          <input v-model="playerAura.level" type="number" min="0" max="40" placeholder="Lvl">
+          <input v-model="aura.level" type="number" min="0" max="40" placeholder="Lvl">
 
           <span class="details">Qual:</span>
           <input
-            v-model="playerAura.quality"
+            v-model="aura.quality"
             type="number"
             min="0"
             max="120"
@@ -42,7 +42,7 @@
           >
 
           <span class="details">Alt:</span>
-          <select v-model="playerAura.altQuality">
+          <select v-model="aura.altQuality">
             <option value="0">None</option>
             <option v-if="altQualityCount > 1" value="1">Anom</option>
             <option v-if="altQualityCount > 2" value="2">Diverg</option>
@@ -59,22 +59,16 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
-    playerAura: {
+    aura: {
       type: Object,
       require: true,
-    },
-
-    altQualityCount: {
-      type: Number,
-      require: false,
-      default: 0,
     },
   },
 
 
   computed: {
     maxGenerosityLevel(): number {
-      switch (this.playerAura.generosityType) {
+      switch (this.aura.generosityType) {
         case 0: return 0;
         case 1: return 40;
         case 2: return 20;
@@ -82,29 +76,33 @@ export default defineComponent({
     },
 
     auraIcon(): string {
-      try { return require(`@/assets/img/auras/${this.playerAura.id}.png`); }
+      try { return require(`@/assets/img/auras/${this.aura.id}.png`); }
       catch { return require('@/assets/img/auras/missing.png'); }
     },
 
     gemIcon(): string {
-      try { return require(`@/assets/img/gems/${this.playerAura.id}.png`); }
+      try { return require(`@/assets/img/gems/${this.aura.id}.png`); }
       catch { return require('@/assets/img/gems/missing.png'); }
+    },
+
+    altQualityCount(): number {
+      return this.aura.auraDetails.qualityStats.length;
     }
   },
 
   watch: {
-    'playerAura.generosityType' : {
+    'aura.generosityType' : {
       handler(to) {
-        if (to === 0 && this.playerAura.generosityLevel > 0) this.playerAura.generosityLevel = 0;
-        else if (to === 2 && this.playerAura.generosityLevel > 20) this.playerAura.generosityLevel = 20;
+        if (to === 0 && this.aura.generosityLevel > 0) this.aura.generosityLevel = 0;
+        else if (to === 2 && this.aura.generosityLevel > 20) this.aura.generosityLevel = 20;
       }
     },
 
-    'playerAura.generosityLevel' : {
+    'aura.generosityLevel' : {
       handler(to) {
-        if (this.playerAura.generosityType === 0) this.playerAura.generosityLevel = 0;
-        else if (this.playerAura.generosityType === 1 && to > 40) this.playerAura.generosityLevel = 40;
-        else if (this.playerAura.generosityType === 2 && to > 20) this.playerAura.generosityLevel = 20;
+        if (this.aura.generosityType === 0) this.aura.generosityLevel = 0;
+        else if (this.aura.generosityType === 1 && to > 40) this.aura.generosityLevel = 40;
+        else if (this.aura.generosityType === 2 && to > 20) this.aura.generosityLevel = 20;
       }
     }
   }

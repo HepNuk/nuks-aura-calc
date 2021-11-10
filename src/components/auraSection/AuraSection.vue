@@ -1,10 +1,9 @@
 <template>
   <div class="aura-section row">
     <AuraLabel
-      v-for="playerAura in playerAuras.entries()"
-      :key="playerAura[0]"
-      :player-aura="playerAura[1]"
-      :alt-quality-count="auraStatic.get(playerAura[0]).qualityStats.length"
+      v-for="aura in auras.entries()"
+      :key="aura[0]"
+      :aura="aura[1]"
       :class="cols"
     />
   </div>
@@ -29,15 +28,10 @@ export default defineComponent({
   },
 
   props: {
-    playerAuras: {
+    auras: {
       type: Object,
       require: true,
     },
-
-    auraStatic: {
-      type: Object,
-      require: true,
-    }
   },
 
   computed: {
@@ -52,7 +46,7 @@ export default defineComponent({
   },
 
   mounted() {
-    console.log(this.playerAuras);
+    console.log(this.auras);
   },
 
   methods: {
