@@ -1,0 +1,1324 @@
+{
+	"Smite": {
+		"active_skill": {
+			"description": "Performs a melee attack, and causes lightning to strike a targeted location or nearby enemy, dealing damage in an area. If the melee strike hits a target, that enemy cannot also be hit by the area damage. If this skill hits an enemy, you gain an aura buff, granting you and your allies additional lightning damage for a duration. Requires a Sword, Axe, Mace, Sceptre, Staff or Unarmed.",
+			"display_name": "Smite",
+			"id": "smite",
+			"is_manually_casted": true,
+			"is_skill_totem": false,
+			"stat_conversions": {
+				"smite_damage_+%": "damage_+%"
+			},
+			"types": [
+				"Melee",
+				"Attack",
+				"Area",
+				"Duration",
+				"Multistrikeable",
+				"Damage",
+				"MeleeSingleTarget",
+				"Aura",
+				"Buff",
+				"Lightning"
+			],
+			"weapon_restrictions": [
+				"One Hand Sword",
+				"Thrusting One Hand Sword",
+				"Two Hand Sword",
+				"One Hand Axe",
+				"Two Hand Axe",
+				"One Hand Mace",
+				"Sceptre",
+				"Two Hand Mace",
+				"Staff",
+				"Unarmed",
+				"Warstaff"
+			]
+		},
+		"base_item": {
+			"display_name": "Smite",
+			"id": "Metadata/Items/Gems/SkillGemSmite",
+			"release_state": "released"
+		},
+		"cast_time": 1000,
+		"is_support": false,
+		"per_level": {
+			"1": {
+				"damage_effectiveness": 96,
+				"damage_multiplier": 9600,
+				"required_level": 1,
+				"stat_requirements": {
+					"int": 0,
+					"str": 0
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 0
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 4
+					},
+					{
+						"value": 0
+					},
+					{
+						"value": -30
+					},
+					null,
+					null
+				]
+			},
+			"2": {
+				"damage_effectiveness": 100,
+				"damage_multiplier": 10010,
+				"required_level": 2,
+				"stat_requirements": {
+					"int": 0,
+					"str": 0
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 1
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 5
+					},
+					{
+						"value": 0
+					},
+					{
+						"value": -29
+					},
+					null,
+					null
+				]
+			},
+			"3": {
+				"damage_effectiveness": 104,
+				"damage_multiplier": 10410,
+				"required_level": 4,
+				"stat_requirements": {
+					"int": 0,
+					"str": 0
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 2
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 6
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": -29
+					},
+					null,
+					null
+				]
+			},
+			"4": {
+				"damage_effectiveness": 108,
+				"damage_multiplier": 10820,
+				"required_level": 7,
+				"stat_requirements": {
+					"int": 0,
+					"str": 14
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 3
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 8
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": -28
+					},
+					null,
+					null
+				]
+			},
+			"5": {
+				"damage_effectiveness": 112,
+				"damage_multiplier": 11220,
+				"required_level": 11,
+				"stat_requirements": {
+					"int": 0,
+					"str": 19
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 4
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 11
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": -28
+					},
+					null,
+					null
+				]
+			},
+			"6": {
+				"damage_effectiveness": 116,
+				"damage_multiplier": 11630,
+				"required_level": 16,
+				"stat_requirements": {
+					"int": 18,
+					"str": 26
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 5
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 16
+					},
+					{
+						"value": 2
+					},
+					{
+						"value": -27
+					},
+					null,
+					null
+				]
+			},
+			"7": {
+				"damage_effectiveness": 120,
+				"damage_multiplier": 12030,
+				"required_level": 20,
+				"stat_requirements": {
+					"int": 22,
+					"str": 31
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 6
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 21
+					},
+					{
+						"value": 2
+					},
+					{
+						"value": -27
+					},
+					null,
+					null
+				]
+			},
+			"8": {
+				"damage_effectiveness": 124,
+				"damage_multiplier": 12440,
+				"required_level": 24,
+				"stat_requirements": {
+					"int": 25,
+					"str": 37
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 7
+					},
+					{
+						"value": 1
+					},
+					{
+						"value": 26
+					},
+					{
+						"value": 2
+					},
+					{
+						"value": -26
+					},
+					null,
+					null
+				]
+			},
+			"9": {
+				"damage_effectiveness": 128,
+				"damage_multiplier": 12840,
+				"required_level": 28,
+				"stat_requirements": {
+					"int": 29,
+					"str": 42
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 8
+					},
+					{
+						"value": 2
+					},
+					{
+						"value": 33
+					},
+					{
+						"value": 3
+					},
+					{
+						"value": -26
+					},
+					null,
+					null
+				]
+			},
+			"10": {
+				"damage_effectiveness": 132,
+				"damage_multiplier": 13250,
+				"required_level": 32,
+				"stat_requirements": {
+					"int": 33,
+					"str": 47
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 9
+					},
+					{
+						"value": 2
+					},
+					{
+						"value": 40
+					},
+					{
+						"value": 3
+					},
+					{
+						"value": -25
+					},
+					null,
+					null
+				]
+			},
+			"11": {
+				"damage_effectiveness": 137,
+				"damage_multiplier": 13650,
+				"required_level": 36,
+				"stat_requirements": {
+					"int": 36,
+					"str": 52
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 10
+					},
+					{
+						"value": 3
+					},
+					{
+						"value": 49
+					},
+					{
+						"value": 3
+					},
+					{
+						"value": -25
+					},
+					null,
+					null
+				]
+			},
+			"12": {
+				"damage_effectiveness": 141,
+				"damage_multiplier": 14060,
+				"required_level": 40,
+				"stat_requirements": {
+					"int": 40,
+					"str": 58
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 11
+					},
+					{
+						"value": 3
+					},
+					{
+						"value": 60
+					},
+					{
+						"value": 4
+					},
+					{
+						"value": -24
+					},
+					null,
+					null
+				]
+			},
+			"13": {
+				"damage_effectiveness": 145,
+				"damage_multiplier": 14460,
+				"required_level": 44,
+				"stat_requirements": {
+					"int": 44,
+					"str": 63
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 12
+					},
+					{
+						"value": 4
+					},
+					{
+						"value": 72
+					},
+					{
+						"value": 4
+					},
+					{
+						"value": -24
+					},
+					null,
+					null
+				]
+			},
+			"14": {
+				"damage_effectiveness": 149,
+				"damage_multiplier": 14870,
+				"required_level": 48,
+				"stat_requirements": {
+					"int": 48,
+					"str": 68
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 13
+					},
+					{
+						"value": 5
+					},
+					{
+						"value": 87
+					},
+					{
+						"value": 4
+					},
+					{
+						"value": -23
+					},
+					null,
+					null
+				]
+			},
+			"15": {
+				"damage_effectiveness": 153,
+				"damage_multiplier": 15270,
+				"required_level": 52,
+				"stat_requirements": {
+					"int": 51,
+					"str": 74
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 14
+					},
+					{
+						"value": 5
+					},
+					{
+						"value": 104
+					},
+					{
+						"value": 5
+					},
+					{
+						"value": -23
+					},
+					null,
+					null
+				]
+			},
+			"16": {
+				"damage_effectiveness": 157,
+				"damage_multiplier": 15680,
+				"required_level": 56,
+				"stat_requirements": {
+					"int": 55,
+					"str": 79
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 15
+					},
+					{
+						"value": 6
+					},
+					{
+						"value": 123
+					},
+					{
+						"value": 5
+					},
+					{
+						"value": -22
+					},
+					null,
+					null
+				]
+			},
+			"17": {
+				"damage_effectiveness": 161,
+				"damage_multiplier": 16080,
+				"required_level": 60,
+				"stat_requirements": {
+					"int": 59,
+					"str": 84
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 16
+					},
+					{
+						"value": 8
+					},
+					{
+						"value": 146
+					},
+					{
+						"value": 5
+					},
+					{
+						"value": -22
+					},
+					null,
+					null
+				]
+			},
+			"18": {
+				"damage_effectiveness": 165,
+				"damage_multiplier": 16490,
+				"required_level": 64,
+				"stat_requirements": {
+					"int": 62,
+					"str": 90
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 17
+					},
+					{
+						"value": 9
+					},
+					{
+						"value": 173
+					},
+					{
+						"value": 6
+					},
+					{
+						"value": -21
+					},
+					null,
+					null
+				]
+			},
+			"19": {
+				"damage_effectiveness": 169,
+				"damage_multiplier": 16890,
+				"required_level": 67,
+				"stat_requirements": {
+					"int": 65,
+					"str": 94
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 18
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": 195
+					},
+					{
+						"value": 6
+					},
+					{
+						"value": -21
+					},
+					null,
+					null
+				]
+			},
+			"20": {
+				"damage_effectiveness": 173,
+				"damage_multiplier": 17300,
+				"required_level": 70,
+				"stat_requirements": {
+					"int": 68,
+					"str": 98
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 19
+					},
+					{
+						"value": 12
+					},
+					{
+						"value": 220
+					},
+					{
+						"value": 6
+					},
+					{
+						"value": -20
+					},
+					null,
+					null
+				]
+			},
+			"21": {
+				"damage_effectiveness": 177,
+				"damage_multiplier": 17710,
+				"required_level": 72,
+				"stat_requirements": {
+					"int": 70,
+					"str": 100
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 20
+					},
+					{
+						"value": 13
+					},
+					{
+						"value": 239
+					},
+					{
+						"value": 7
+					},
+					{
+						"value": -20
+					},
+					null,
+					null
+				]
+			},
+			"22": {
+				"damage_effectiveness": 181,
+				"damage_multiplier": 18110,
+				"required_level": 74,
+				"stat_requirements": {
+					"int": 72,
+					"str": 103
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 21
+					},
+					{
+						"value": 14
+					},
+					{
+						"value": 258
+					},
+					{
+						"value": 7
+					},
+					{
+						"value": -19
+					},
+					null,
+					null
+				]
+			},
+			"23": {
+				"damage_effectiveness": 185,
+				"damage_multiplier": 18520,
+				"required_level": 76,
+				"stat_requirements": {
+					"int": 73,
+					"str": 106
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 22
+					},
+					{
+						"value": 15
+					},
+					{
+						"value": 280
+					},
+					{
+						"value": 7
+					},
+					{
+						"value": -19
+					},
+					null,
+					null
+				]
+			},
+			"24": {
+				"damage_effectiveness": 189,
+				"damage_multiplier": 18920,
+				"required_level": 78,
+				"stat_requirements": {
+					"int": 75,
+					"str": 108
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 23
+					},
+					{
+						"value": 16
+					},
+					{
+						"value": 302
+					},
+					{
+						"value": 8
+					},
+					{
+						"value": -18
+					},
+					null,
+					null
+				]
+			},
+			"25": {
+				"damage_effectiveness": 193,
+				"damage_multiplier": 19330,
+				"required_level": 80,
+				"stat_requirements": {
+					"int": 77,
+					"str": 111
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 24
+					},
+					{
+						"value": 17
+					},
+					{
+						"value": 327
+					},
+					{
+						"value": 8
+					},
+					{
+						"value": -18
+					},
+					null,
+					null
+				]
+			},
+			"26": {
+				"damage_effectiveness": 197,
+				"damage_multiplier": 19730,
+				"required_level": 82,
+				"stat_requirements": {
+					"int": 79,
+					"str": 113
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 25
+					},
+					{
+						"value": 19
+					},
+					{
+						"value": 353
+					},
+					{
+						"value": 8
+					},
+					{
+						"value": -17
+					},
+					null,
+					null
+				]
+			},
+			"27": {
+				"damage_effectiveness": 201,
+				"damage_multiplier": 20140,
+				"required_level": 84,
+				"stat_requirements": {
+					"int": 81,
+					"str": 116
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 26
+					},
+					{
+						"value": 20
+					},
+					{
+						"value": 381
+					},
+					{
+						"value": 8
+					},
+					{
+						"value": -17
+					},
+					null,
+					null
+				]
+			},
+			"28": {
+				"damage_effectiveness": 205,
+				"damage_multiplier": 20540,
+				"required_level": 86,
+				"stat_requirements": {
+					"int": 83,
+					"str": 119
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 27
+					},
+					{
+						"value": 22
+					},
+					{
+						"value": 411
+					},
+					{
+						"value": 9
+					},
+					{
+						"value": -16
+					},
+					null,
+					null
+				]
+			},
+			"29": {
+				"damage_effectiveness": 209,
+				"damage_multiplier": 20950,
+				"required_level": 88,
+				"stat_requirements": {
+					"int": 85,
+					"str": 121
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 28
+					},
+					{
+						"value": 23
+					},
+					{
+						"value": 444
+					},
+					{
+						"value": 9
+					},
+					{
+						"value": -16
+					},
+					null,
+					null
+				]
+			},
+			"30": {
+				"damage_effectiveness": 214,
+				"damage_multiplier": 21350,
+				"required_level": 90,
+				"stat_requirements": {
+					"int": 86,
+					"str": 124
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 29
+					},
+					{
+						"value": 25
+					},
+					{
+						"value": 479
+					},
+					{
+						"value": 9
+					},
+					{
+						"value": -15
+					},
+					null,
+					null
+				]
+			},
+			"31": {
+				"damage_effectiveness": 216,
+				"damage_multiplier": 21560,
+				"required_level": 91,
+				"stat_requirements": {
+					"int": 87,
+					"str": 125
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 30
+					},
+					{
+						"value": 26
+					},
+					{
+						"value": 497
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": -15
+					},
+					null,
+					null
+				]
+			},
+			"32": {
+				"damage_effectiveness": 218,
+				"damage_multiplier": 21760,
+				"required_level": 92,
+				"stat_requirements": {
+					"int": 88,
+					"str": 127
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 30
+					},
+					{
+						"value": 27
+					},
+					{
+						"value": 516
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": -15
+					},
+					null,
+					null
+				]
+			},
+			"33": {
+				"damage_effectiveness": 220,
+				"damage_multiplier": 21960,
+				"required_level": 93,
+				"stat_requirements": {
+					"int": 89,
+					"str": 128
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 31
+					},
+					{
+						"value": 28
+					},
+					{
+						"value": 536
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": -15
+					},
+					null,
+					null
+				]
+			},
+			"34": {
+				"damage_effectiveness": 222,
+				"damage_multiplier": 22160,
+				"required_level": 94,
+				"stat_requirements": {
+					"int": 90,
+					"str": 129
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 31
+					},
+					{
+						"value": 29
+					},
+					{
+						"value": 556
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": -14
+					},
+					null,
+					null
+				]
+			},
+			"35": {
+				"damage_effectiveness": 224,
+				"damage_multiplier": 22370,
+				"required_level": 95,
+				"stat_requirements": {
+					"int": 91,
+					"str": 131
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 32
+					},
+					{
+						"value": 30
+					},
+					{
+						"value": 577
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": -14
+					},
+					null,
+					null
+				]
+			},
+			"36": {
+				"damage_effectiveness": 226,
+				"damage_multiplier": 22570,
+				"required_level": 96,
+				"stat_requirements": {
+					"int": 92,
+					"str": 132
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 32
+					},
+					{
+						"value": 32
+					},
+					{
+						"value": 599
+					},
+					{
+						"value": 10
+					},
+					{
+						"value": -14
+					},
+					null,
+					null
+				]
+			},
+			"37": {
+				"damage_effectiveness": 228,
+				"damage_multiplier": 22770,
+				"required_level": 97,
+				"stat_requirements": {
+					"int": 93,
+					"str": 133
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 33
+					},
+					{
+						"value": 33
+					},
+					{
+						"value": 621
+					},
+					{
+						"value": 11
+					},
+					{
+						"value": -14
+					},
+					null,
+					null
+				]
+			},
+			"38": {
+				"damage_effectiveness": 230,
+				"damage_multiplier": 22970,
+				"required_level": 98,
+				"stat_requirements": {
+					"int": 94,
+					"str": 135
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 33
+					},
+					{
+						"value": 34
+					},
+					{
+						"value": 645
+					},
+					{
+						"value": 11
+					},
+					{
+						"value": -13
+					},
+					null,
+					null
+				]
+			},
+			"39": {
+				"damage_effectiveness": 232,
+				"damage_multiplier": 23180,
+				"required_level": 99,
+				"stat_requirements": {
+					"int": 95,
+					"str": 136
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 34
+					},
+					{
+						"value": 35
+					},
+					{
+						"value": 669
+					},
+					{
+						"value": 11
+					},
+					{
+						"value": -13
+					},
+					null,
+					null
+				]
+			},
+			"40": {
+				"damage_effectiveness": 234,
+				"damage_multiplier": 23380,
+				"required_level": 100,
+				"stat_requirements": {
+					"int": 96,
+					"str": 137
+				},
+				"stats": [
+					null,
+					null,
+					{
+						"value": 34
+					},
+					{
+						"value": 37
+					},
+					{
+						"value": 694
+					},
+					{
+						"value": 11
+					},
+					{
+						"value": -13
+					},
+					null,
+					null
+				]
+			}
+		},
+		"stat_translation_file": "stat_translations/skill",
+		"static": {
+			"attack_speed_multiplier": -15,
+			"costs": {
+				"Mana": 6
+			},
+			"quality_stats": [
+				{
+					"id": "base_skill_area_of_effect_+%",
+					"set": 0,
+					"value": 500
+				},
+				{
+					"id": "skill_effect_duration_+%",
+					"set": 1,
+					"value": 1000
+				},
+				{
+					"id": "lightning_damage_+%",
+					"set": 2,
+					"value": 1000
+				},
+				{
+					"id": "skill_buff_grants_attack_and_cast_speed_+%",
+					"set": 3,
+					"value": 250
+				}
+			],
+			"stat_requirements": {
+				"dex": 0
+			},
+			"stats": [
+				{
+					"id": "skill_physical_damage_%_to_convert_to_lightning",
+					"value": 50
+				},
+				{
+					"id": "base_skill_effect_duration",
+					"value": 4000
+				},
+				{
+					"id": "base_chance_to_shock_%_from_skill"
+				},
+				{
+					"id": "minimum_added_lightning_damage_from_skill"
+				},
+				{
+					"id": "maximum_added_lightning_damage_from_skill"
+				},
+				{
+					"id": "active_skill_base_radius_+"
+				},
+				{
+					"id": "active_skill_area_damage_+%_final"
+				},
+				{
+					"id": "visual_hit_effect_elemental_is_holy",
+					"value": 1
+				},
+				{
+					"id": "console_skill_dont_chase",
+					"value": 1
+				}
+			]
+		},
+		"tags": [
+			"lightning",
+			"strength",
+			"active_skill",
+			"attack",
+			"area",
+			"duration",
+			"melee",
+			"strike",
+			"aura"
+		]
+	}
+}

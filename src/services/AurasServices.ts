@@ -2,10 +2,10 @@ import {
   PASSIVE_TREE_LINK,
   REPOE_LINK,
   REPOE_GEMS,
-  GEM_FILTER,
+  GEM_FILTER_OUT,
   AURA_NODE_IDS,
   ASCENDANCY_NODE_IDS,
-  ASCENDANCIES,
+  GET_GEMS_IDS,
 } from '@/assets/constantes';
 
 export default {
@@ -14,6 +14,9 @@ export default {
     const json: JSON = await data.json();
 
     return Object.values(json).filter((gem: any) => {
+      // Bypass filter for these Gems
+      if (gem.base_item
+        && GET_GEMS_IDS.includes(gem.base_item.id)) return true;
       // Filter out non-aura and non-aura-banner skills
       if (!gem.stat_translation_file.includes('/aura_skill')
         && !gem.stat_translation_file.includes('/banner_aura_skill')) return false;
@@ -22,7 +25,7 @@ export default {
       // Filter out Royal skills
       if (gem.base_item.id.includes('Royal')) return false;
       // Filter out other skills that are classified as auras but are not buffing Auras
-      if (GEM_FILTER.includes(gem.active_skill.id)) return false;
+      if (GEM_FILTER_OUT.includes(gem.active_skill.id)) return false;
 
       return true;
     });

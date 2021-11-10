@@ -5,13 +5,13 @@
       :class="cols"
       :key="playerAura[0]"
       :player-aura="playerAura[1]"
-      
+      :alt-quality-count="auraStatic.get(playerAura[0]).qualityStats.length"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, PropType } from 'vue';
+import { defineComponent, inject } from 'vue';
 import { Vue3Mq } from '@/types';
 
 import AuraLabel from './AuraLabel.vue';
@@ -35,7 +35,7 @@ export default defineComponent({
     },
 
     auraStatic: {
-      type: Map,
+      type: Object,
       require: true,
     }
   },

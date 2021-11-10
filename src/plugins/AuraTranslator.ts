@@ -1,10 +1,12 @@
 export default class Translator {
   private translations: any;
   private bannerTranslations: any;
+  private skillTranslations: any;
 
-  constructor(translations: any, bannerTranslations: any) {
+  constructor(translations: any, bannerTranslations: any, skillTranslations: any) {
     this.translations = translations;
     this.bannerTranslations = bannerTranslations;
+    this.skillTranslations = skillTranslations;
   }
 
   public getAuraStat = (aura: any): string[] => {
@@ -16,10 +18,13 @@ export default class Translator {
 
         if (aura.stat_translation_file.includes('/banner_aura_skill')) {
           translation = this.bannerTranslations.find((tr: any) => tr.ids.includes(stat.id));
-        } else {
+        } else if (aura.stat_translation_file.includes('/aura_skill')) {
           translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
+        } else {
+          translation = this.skillTranslations.find((tr: any) => tr.ids.includes(stat.id));
         }
-        stats.push(translation.English[0].string);
+        if (!translation) stats.push(stat.id);
+        else stats.push(translation.English[0].string);
       }
     });
 
@@ -39,9 +44,12 @@ export default class Translator {
       let translation: any;
       if (aura.stat_translation_file.includes('/banner_aura_skill')) {
         translation = this.bannerTranslations.find((tr: any) => tr.ids.includes(stat.id));
-      } else {
+      } else if (aura.stat_translation_file.includes('/aura_skill')) {
         translation = this.translations.find((tr: any) => tr.ids.includes(stat.id));
+      } else {
+        translation = this.skillTranslations.find((tr: any) => tr.ids.includes(stat.id));
       }
+      if (!translation) qualityStats[currentSet].push(stat.id);
       qualityStats[currentSet].push(translation.English[0].string);
     });
 

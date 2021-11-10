@@ -3,7 +3,7 @@
     <div class="aura">
       <div class="aura-row">
         <div class="left-group">
-          <img :src="require(`@/assets/img/auras/${playerAura.id}.png`)">
+          <img v-if="require(`@/assets/img/auras/${playerAura.id}.png`)" :src="require(`@/assets/img/auras/${playerAura.id}.png`)">
           <span class="aura-title">
             {{ playerAura.displayName }}
           </span>
@@ -22,7 +22,7 @@
 
       <div class="aura-row">
         <div class="left-group">
-          <img :src="require(`@/assets/img/gems/${playerAura.id}.png`)">
+          <img v-if="require(`@/assets/img/gems/${playerAura.id}.png`)" :src="require(`@/assets/img/gems/${playerAura.id}.png`)">
         </div>
 
         <div class="right-group">
@@ -41,9 +41,9 @@
           <span class="details">Alt:</span>
           <select v-model="playerAura.altQuality">
             <option value="0">None</option>
-            <option value="1">Anom</option>
-            <option value="2">Diverg</option>
-            <option v-if="hasPhantasmal" value="3">Phantasm</option>
+            <option v-if="altQualityCount > 1" value="1">Anom</option>
+            <option v-if="altQualityCount > 2" value="2">Diverg</option>
+            <option v-if="altQualityCount > 3" value="3">Phantasm</option>
           </select>
         </div>
       </div>
@@ -58,17 +58,18 @@ export default defineComponent({
   props: {
     playerAura: {
       type: Object,
-      required: true,
-    }
+      require: true,
+    },
+
+    altQualityCount: {
+      type: Number,
+      require: false,
+      default: 0,
+    },
   },
 
 
   computed: {
-    hasPhantasmal(): boolean {
-      console.log(this.playerAura);
-      return false;
-    },
-
     maxGenerosityLevel(): number {
       switch (this.playerAura.generosityType) {
         case 0: return 0;

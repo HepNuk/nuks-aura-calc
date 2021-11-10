@@ -9,7 +9,8 @@ AurasServices.getStatTranslation('stat_translations/aura_skill').then(async (tra
   const app = createApp(App);
 
   const bannerTranslations = await AurasServices.getStatTranslation('stat_translations/banner_aura_skill');
-  const t = new AuraTranslator(translations, bannerTranslations);
+  const skillTranslations = await AurasServices.getStatTranslation('stat_translations/skill');
+  const t = new AuraTranslator(translations, bannerTranslations, skillTranslations);
   app.component('fa', FontAwesomeIcon);
   app.config.globalProperties.$getAuraStat = (aura: any) => t.getAuraStat(aura);
   app.config.globalProperties.$getQualityStat = (aura: any) => t.getQualityStat(aura);
