@@ -7,13 +7,42 @@
       :group="cluster[0]"
       :cluster="cluster[1]"
     />
+
+    <Jewel 
+      :value="passiveTree.potency" 
+      :class="cols"
+      title="Conqueror's Potency"
+      variant="toggle" 
+      img-link="img/tree/potency.png"
+      @update="(e) => passiveTree.potency = e"
+    />
+
+    <Jewel 
+      :value="passiveTree.timelessJewel"
+      :class="cols"
+      title="Timeless Jewel "
+      variant="number"
+      img-link="img/tree/timeless.png"
+      @update="(e) => passiveTree.timelessJewel = e"
+    />
+
+    <Jewel 
+      :value="passiveTree.clusterJewels"
+      :class="cols"
+      title="Cluster Jewels"
+      variant="number"
+      img-link="img/tree/cluster.png"
+      @update="(e) => passiveTree.clusterJewel = e"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
-import TreeCluster from './TreeCluster.vue';
 import { Vue3Mq } from '@/types';
+
+import TreeCluster from './TreeCluster.vue';
+import Jewel from './Jewel.vue';
 
 export default defineComponent({
   name: 'TreeSection',
@@ -22,8 +51,10 @@ export default defineComponent({
       mq: inject('mq') as Vue3Mq,
     };
   },
+
   components: {
     TreeCluster,
+    Jewel,
   },
   props: {
     passiveTree: {

@@ -7,7 +7,6 @@
         :key="'smallNode-' + i"
         :node="node"
         class="node" 
-        
       />
     </div>
   </div>

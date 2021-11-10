@@ -4,6 +4,9 @@ import TreeNode from './TreeNode';
 export default class Tree {
 
   public treeClusters: Map<number, TreeCluster>;
+  public timelessJewel: number = 0;
+  public clusterJewels: number = 0;
+  public potency: boolean = false;
 
   constructor() {
     this.treeClusters = new Map<number, TreeCluster>();
