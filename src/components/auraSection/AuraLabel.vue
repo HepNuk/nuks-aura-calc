@@ -26,6 +26,9 @@
         </div>
 
         <div class="right-group">
+          <span class="details">AE:</span>
+          <input v-model="playerAura.localAuraEffect" type="number" min="0" max="100" placeholder="AE">
+
           <span class="details">Lvl:</span>
           <input v-model="playerAura.level" type="number" min="0" max="40" placeholder="Lvl">
 
