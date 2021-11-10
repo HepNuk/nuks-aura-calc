@@ -1,4 +1,3 @@
-import { newLineWithIndentation } from 'tslint/lib/utils';
 import AbsrtactNode from './AbstractNode';
 
 const STAT_REGEX = {

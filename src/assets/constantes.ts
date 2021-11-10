@@ -2,7 +2,11 @@ export const PASSIVE_TREE_LINK: string = 'https://raw.githubusercontent.com/grin
 export const REPOE_LINK: string = 'https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/';
 export const REPOE_GEMS: string = 'gems.min.json';
 
-export const GEM_FILTER: string[] = [
+export const GET_GEMS_IDS = [
+  'Metadata/Items/Gems/SkillGemSmite'
+];
+
+export const GEM_FILTER_OUT: string[] = [
   'blinding_aura',
   'chaos_degen_aura_unique',
   'vaal_aura_elemental_damage_healing',
