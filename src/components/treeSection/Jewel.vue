@@ -2,9 +2,7 @@
   <label class="jewel-label">
     <div class="jewel">
       <img :src="img">
-      <input v-if="variant === 'toggle'" v-model="jewelValue" class="me-1" type="checkbox">
-      <input v-if="variant === 'number'" v-model="jewelValue" class="ms-auto" type="number" min="0" max="100" placeholder="AuraEffect" >
-      {{ title }}
+      <slot/>
     </div>
   </label>
 </template>
@@ -14,26 +12,10 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
-    value: {
-      type: [Number, Boolean],
-      require: true,
-    },
-
-    variant: {
-      type: String,
-      require: true,
-      validator: (v: string) => ['toggle', 'number'].includes(v),
-    },
-
     imgLink: {
       type: String,
       require: true,
     },
-
-    title: {
-      type: String,
-      require: true,
-    }
   },
 
   computed: {
@@ -44,15 +26,6 @@ export default defineComponent({
         return require('@/assets/img/tree/missing.png');
       }
     },
-
-    jewelValue: {
-      get() {
-        return this.value;
-      },
-      set(v: any) {
-        this.$emit('update', v);
-      }
-    }
   }
 });
 

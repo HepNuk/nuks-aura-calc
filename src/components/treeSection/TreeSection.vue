@@ -9,31 +9,28 @@
     />
 
     <Jewel 
-      :value="passiveTree.potency" 
       :class="cols"
-      title="Conqueror's Potency"
-      variant="toggle" 
       img-link="img/tree/potency.png"
-      @update="(e) => passiveTree.potency = e"
-    />
-
+    >
+      <input v-model="passiveTree.potency" class="me-1" type="checkbox">
+      Conqueror's Potency 
+    </Jewel>
+    
     <Jewel 
-      :value="passiveTree.timelessJewel"
       :class="cols"
-      title="Timeless Jewel "
-      variant="number"
       img-link="img/tree/timeless.png"
-      @update="(e) => passiveTree.timelessJewel = e"
-    />
+    >
+      <input v-model="passiveTree.timelessJewel" class="ms-auto" type="number" min="0" max="100" placeholder="AuraEffect" >
+      Timeless Jewel 
+    </Jewel>
 
     <Jewel 
-      :value="passiveTree.clusterJewels"
       :class="cols"
-      title="Cluster Jewels"
-      variant="number"
       img-link="img/tree/cluster.png"
-      @update="(e) => passiveTree.clusterJewel = e"
-    />
+    >
+      <input v-model="passiveTree.clusterJewels" class="ms-auto" type="number" min="0" max="100" placeholder="AuraEffect" >
+      Cluster Jewel 
+    </Jewel>
   </div>
 </template>
 
