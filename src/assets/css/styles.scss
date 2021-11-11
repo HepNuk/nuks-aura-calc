@@ -5,6 +5,7 @@
 $lAccent: rgb(44, 54, 65);
 $dAccent: rgb(29, 33, 37);
 $label: rgb(0, 2, 2);
+$border: rgb(18, 19, 31, 0.5);
 
 body {
   margin: 0;
@@ -22,6 +23,7 @@ body {
   height: 100%;
   background-color: $dAccent;
   border-radius: 6px;
+  box-shadow:inset 0px 0px 0px 2px $border;
 }
 
 .content-box {
@@ -30,6 +32,7 @@ body {
   border-radius: 6px;
   margin: 0;
   margin-bottom: 0.5em;
+  box-shadow:inset 0px 0px 0px 2px $border;
 }
 
 .output-stats { 
@@ -40,6 +43,7 @@ body {
   overflow-y: auto;
   background-color: $dAccent;
   border-radius: 6px;
+  box-shadow:inset 0px 0px 0px 2px $border;
 }
 
 select{
