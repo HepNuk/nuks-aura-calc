@@ -13,7 +13,7 @@
 * [x] ~~Add Auras to frontend and style it.~~
 * [x] ~~Add Passive tree nodes to frontend and style it.~~
 * [x] ~~Add Jewel Support to passives.~~
-* [ ] Add Ascendancies to frontend and style it.
+* [x] Add Ascendancies to frontend and style it.
 * [ ] Calculate Stats and dispaly on output section.
 * [ ] Add Auras from Skills support to output.
 * [ ] Add Other missing misc stats to output.
