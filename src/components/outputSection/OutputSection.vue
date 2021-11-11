@@ -5,14 +5,25 @@
       <p>{{ globalAuraEffect }}% Global Aura Effect</p>
     </div>
 
-
+    <AuraStat 
+      v-for="aura in auras"
+      :key="aura[0]"
+      :aura="aura[1]"
+      :support-gems-static="supportGemsStatic"
+      :global-aura-effect="globalAuraEffect"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import AuraStat from './AuraStat.vue';
 
 export default defineComponent({
+  components: {
+    AuraStat,
+  },
+
   props: {
     globalAuraEffect: {
       type: Number,
@@ -40,6 +51,8 @@ export default defineComponent({
       require: true,
     },
   },
+
+
 });
 
 </script>

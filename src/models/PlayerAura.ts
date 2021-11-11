@@ -61,11 +61,13 @@ export default class PlayerAura {
     const qualityStats: string[] = [];
     const aQual = this.altQuality;
     this.auraDetails.qualityStats[aQual].forEach((qualityLine, i) => {
-      const statValue: number = (this.auraDetails.statsPerQuality[aQual][i] / 100) * (1 + (ae / 100));
-      let line = qualityLine;
-      if (statValue < 0) line = this.handleNegativeValues(0, qualityLine);
-
-      qualityStats.push(line.replace('{0}', Math.abs(statValue).toString()));
+      if (/You and nearby (?:A|a)llies/.test(qualityLine)) {
+        let statValue: number = (this.auraDetails.statsPerQuality[aQual][i] / 100) * (1 + (ae / 100)) / 20 * this.quality;
+        let line = qualityLine;
+        if (statValue < 0) line = this.handleNegativeValues(0, qualityLine);
+        statValue =  Math.floor(Math.abs(statValue));
+        if (statValue > 0) qualityStats.push(line.replace('{0}', Math.abs(statValue).toString()));
+      }
     });
 
     return qualityStats;
@@ -88,7 +90,7 @@ export default class PlayerAura {
     return 0;
   }
 
-  private auraEffectForGem(auraEffect: number, supportGems: Map<string, SupportGem>): number {
+  public auraEffectForGem(auraEffect: number, supportGems: Map<string, SupportGem>): number {
     return this.localAuraEffect + auraEffect + this.getGenerosityAuraEffect(supportGems);
   }
 
