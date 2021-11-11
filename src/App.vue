@@ -1,6 +1,6 @@
 <template>
   <div class="aura-app">
-    <Header class="mb-2" title="Nuk's PoE Aura stats calculator | WIP" version="3.16"/>
+    <Header class="mb-2" title="Nuk's PoE Aura stats calculator | WIP | ALPHA 0.1" version="3.16"/>
 
     <div class="d-flex">
       <div class="flex-grow-1 me-3">
