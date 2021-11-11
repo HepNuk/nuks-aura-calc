@@ -60,18 +60,13 @@ export default defineComponent({
       return this.key.toUpperCase().charAt(0) + this.key.slice(1, this.key.length);
     }
   },
-
-  mounted() {
-    console.log(this.key, this.ascendancy);
-  },
 });
 
 </script>
 
 <style scoped lang="scss">
 .asc-cluster{
-  min-height: 230px;
-  height: auto;
+  min-height: 295px;
   padding: 0.3em 0.5em 0.3em 0.5em;
   background-image: linear-gradient(rgba(0,0,0,var(--opacity)), rgba(0,0,0,var(--opacity))), var(--bg-image);
   background-position: left top;
@@ -88,7 +83,7 @@ export default defineComponent({
 }
 
 .asc-selected{
-  box-shadow:inset 0px 0px 0px 2px rgb(218,218,218,0.75);
+  box-shadow:inset 0px 0px 0px 2px rgb(218,218,218,0.8);
 }
 
 </style>

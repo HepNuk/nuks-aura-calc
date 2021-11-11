@@ -50,10 +50,6 @@ export default defineComponent({
       }
     },
   },
-
-  mounted() {
-    console.log(this.node);
-  }
 });
 
 </script>

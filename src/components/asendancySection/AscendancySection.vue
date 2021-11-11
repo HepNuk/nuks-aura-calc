@@ -3,6 +3,7 @@
     <Col 
       v-for="ascendancy in ascendancies.ascendancyTrees"
       :key="ascendancy[0]"
+      :cols="cols"
     >
       <AscendancyCluster
         :key="ascendancy[0]"
@@ -51,17 +52,10 @@ export default defineComponent({
       switch (this.mq.current) {
         case 'sm': return 'col-12';
         case 'md': return 'col-6';
-        case 'lg': return 'col-4';
+        case 'lg': return 'col-6';
         case 'xl': return 'col-3';
       }
     },
-  },
-
-  mounted() {
-    console.log(this.ascendancies);
-  },
-
-  methods: {
   },
 });
 

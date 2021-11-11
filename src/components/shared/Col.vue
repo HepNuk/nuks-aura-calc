@@ -49,7 +49,7 @@ export default defineComponent({
 }
 
 .item {
-  background-color: #111;
+  background-color: rgb(0, 2, 2);
   border-radius: 5px;
   flex-direction: column;
   flex-wrap: nowrap;
