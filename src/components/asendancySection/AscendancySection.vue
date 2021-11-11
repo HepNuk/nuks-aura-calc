@@ -6,7 +6,12 @@
     >
       <AscendancyCluster
         :key="ascendancy[0]"
-        :acsendancy="ascendancy[1]"
+        :ascendancy="ascendancy[1].sort((a, b) => {
+          if (a.isNotable && b.isNotable) return 0;
+          if (a.isNotable) return -1;
+          if (b.isNotable) return 1;
+          return 0
+        })"
         :selected="(ascendancies.ascendancy === ascendancy[0])"
         @click="ascendancies.selectAscendancy(ascendancy[0])"
       />

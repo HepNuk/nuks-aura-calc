@@ -13,15 +13,24 @@
     </Col>
   
     <!-- TODO: Make Jewels better someday.. -->
-    <Col
-      v-for="(jewel, i) in jewels"
-      :key="`jewel-${i}`"
-      :cols="cols"
-    >
-      <Jewel :imgLink="jewel.img">
-        <input v-if="jewel.toggle" v-model="jewel.model" class="me-1" type="checkbox">
-        <input v-else v-model="jewel.model" class="ms-auto" type="number" min="0" max="100" placeholder="AuraEffect" >
-        {{ jewel.title }}
+    <Col :cols="cols">
+      <Jewel imgLink="img/tree/potency.png">
+        <input v-model="this.passiveTree.potency" class="me-1" type="checkbox">
+        Conqueror's Potency
+      </Jewel>
+    </Col>
+
+    <Col :cols="cols">
+      <Jewel imgLink="img/tree/timeless.png">
+        <input v-model="this.passiveTree.timelessJewel" class="ms-auto" type="number" min="0" max="100" placeholder="AuraEffect" >
+        Timeless Jewel
+      </Jewel>
+    </Col>
+
+    <Col :cols="cols">
+      <Jewel imgLink="img/tree/cluster.png">
+        <input v-model="this.passiveTree.clusterJewels" class="ms-auto" type="number" min="0" max="100" placeholder="AuraEffect" >
+        Cluster Jewel
       </Jewel>
     </Col>
   </div>

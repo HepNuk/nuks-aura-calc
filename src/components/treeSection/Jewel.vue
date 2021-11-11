@@ -1,8 +1,8 @@
 <template>
-  <div class="jewel">
+  <label class="jewel">
     <img :src="img">
     <slot/>
-  </div>
+  </label>
 </template>
 
 <script lang="ts">

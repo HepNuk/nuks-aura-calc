@@ -27,8 +27,6 @@ export default defineComponent({
         return require(`@/assets/img/Art/2DArt/SkillIcons/passives/missing.png`);
       }
     },
-
-    
   },
 });
 
@@ -50,7 +48,7 @@ export default defineComponent({
   }
   
   .small-node-bg {
-    border-radius: 5px;
+    border-radius: 15px;
     width: 18px;
     height: 18px;
     float: left;

@@ -27,7 +27,7 @@
 
       <div class="justify-content-center">
         <div class="output-stats sticky-top">
-          
+          {{ globalAuraEffect }}
         </div>
       </div>
     </div>
