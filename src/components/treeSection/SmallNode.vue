@@ -1,6 +1,6 @@
 <template>
-  <label class="small-node-label">
-    <img v-if="node.active" class="small-node-border" src="@/assets/img/borders/small_border_active.png">
+  <label class="small-node-label mb-1 mt-2">
+    <img v-if="node.active" class="small-node-border " src="@/assets/img/borders/small_border_active.png">
     <img v-else class="small-node-border" src="@/assets/img/borders/small_border.png">
     <img class="small-node-bg" :src="nodeBg">
     <input v-model="node.active" class="me-1" type="checkbox">
@@ -27,14 +27,12 @@ export default defineComponent({
         return require(`@/assets/img/Art/2DArt/SkillIcons/passives/missing.png`);
       }
     },
-
-    
   },
 });
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .small-node-label {
   position: relative;
   display: flex;
@@ -50,7 +48,7 @@ export default defineComponent({
   }
   
   .small-node-bg {
-    border-radius: 5px;
+    border-radius: 15px;
     width: 18px;
     height: 18px;
     float: left;

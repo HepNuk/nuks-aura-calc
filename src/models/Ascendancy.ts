@@ -42,4 +42,11 @@ export default class Ascendancy {
       callback(ascNode);
     });
   }
+
+  public selectAscendancy(ascendancy: string) {
+    if (this.ascendancy === ascendancy) return;
+    if (this.ascendancyTrees.has(ascendancy)) {
+      this.ascendancy = ascendancy;
+    }
+  }
 }

@@ -36,7 +36,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .notable-label {
   position: relative;
   display: flex;

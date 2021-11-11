@@ -1,9 +1,7 @@
 <template>
-  <label class="jewel-label">
-    <div class="jewel">
-      <img :src="img">
-      <slot/>
-    </div>
+  <label class="jewel">
+    <img :src="img">
+    <slot/>
   </label>
 </template>
 
@@ -31,20 +29,10 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
-.jewel-label {
-  padding: 0.4em;
-}
-.jewel {
-  background-color: #111;
-  border-radius: 5px;
-  flex-direction: column;
-  flex-wrap: nowrap;
-
-  img {
-    width: 35px;
-    height: 35px;
-    margin-right: 8px;
-  }
+<style scoped lang="scss">
+img {
+  width: 35px;
+  height: 35px;
+  margin-right: 8px;
 }
 </style>
