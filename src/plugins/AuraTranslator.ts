@@ -24,7 +24,7 @@ export default class Translator {
           translation = this.skillTranslations.find((tr: any) => tr.ids.includes(stat.id));
         }
         if (!translation) stats.push(stat.id);
-        else stats.push(translation.English[0].string);
+        else stats.push(this.fixRePoETransaltionErrors(translation.English[0].string));
       }
     });
 
@@ -50,10 +50,16 @@ export default class Translator {
         translation = this.skillTranslations.find((tr: any) => tr.ids.includes(stat.id));
       }
       if (!translation) qualityStats[currentSet].push(stat.id);
-      qualityStats[currentSet].push(translation.English[0].string);
+      else qualityStats[currentSet].push(this.fixRePoETransaltionErrors(translation.English[0].string));
     });
 
     return qualityStats;
+  }
+
+  private fixRePoETransaltionErrors(line: string): string {
+    let fixedLines = line.replace('Your and nearby Allies\'', 'You and nearby allies');
+    // Add more wording error fixes here.
+    return fixedLines;
   }
 }
 
