@@ -15,7 +15,7 @@
   border-radius: 50%;
 }
 .loader {
-  color: #373d44;
+  color: rgb(21, 24, 26);
   font-size: 11px;
   text-indent: -99999em;
   margin: 55px auto;
@@ -35,7 +35,7 @@
 .loader:before {
   width: 5.2em;
   height: 10.2em;
-  background: #58606b;
+  background: rgb(44, 54, 65);
   border-radius: 10.2em 0 0 10.2em;
   top: -0.1em;
   left: -0.1em;
@@ -47,7 +47,7 @@
 .loader:after {
   width: 5.2em;
   height: 10.2em;
-  background: #58606b;
+  background: rgb(44, 54, 65);
   border-radius: 0 10.2em 10.2em 0;
   top: -0.1em;
   left: 4.9em;
