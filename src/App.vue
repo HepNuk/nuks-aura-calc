@@ -23,6 +23,7 @@
             :ascendancies="ascendancies"
           />
         </template>
+        <Spinner v-else/>
       </div>
 
       <div class="justify-content-center">
@@ -49,6 +50,7 @@ import PlayerAura from './models/PlayerAura';
 import Tree from './models/Tree';
 import Ascendancy from './models/Ascendancy';
 
+import Spinner from '@/components/shared/Spinner.vue';
 import Header from './components/shared/Header.vue';
 import AuraSection from './components/auraSection/AuraSection.vue';
 import TreeSection from './components/treeSection/TreeSection.vue';
@@ -59,6 +61,7 @@ export default defineComponent({
   name: 'App',
   components: {
     Header,
+    Spinner,
     AuraSection,
     TreeSection,
     AscendancySection,
