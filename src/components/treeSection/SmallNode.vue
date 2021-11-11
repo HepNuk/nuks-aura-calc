@@ -34,7 +34,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .small-node-label {
   position: relative;
   display: flex;

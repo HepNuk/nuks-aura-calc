@@ -1,34 +1,34 @@
 <template>
-  <div class="aura-app mb-2">
-    <Header title="Nuk's PoE Aura stats calculator | WIP" version="3.16"/>
-  </div>
+  <div class="aura-app">
+    <Header class="mb-2" title="Nuk's PoE Aura stats calculator | WIP" version="3.16"/>
 
-  <div class="d-flex">
-    <div class="flex-grow-1 me-3">
-      <template v-if="!loading">
-        <AuraSection 
-          v-if="auras.size > 0"
-          class="content-box" 
-          :auras="auras"
-        />
+    <div class="d-flex">
+      <div class="flex-grow-1 me-3">
+        <template v-if="!loading">
+          <AuraSection 
+            v-if="auras.size > 0"
+            class="content-box" 
+            :auras="auras"
+          />
 
-        <TreeSection 
-          v-if="passiveTree.treeClusters.size > 0"
-          class="content-box"
-          :passive-tree="passiveTree" 
-        />
+          <TreeSection 
+            v-if="passiveTree.treeClusters.size > 0"
+            class="content-box"
+            :passive-tree="passiveTree" 
+          />
 
-        <AscendancySection 
-          v-if="ascendancies.ascendancyTrees.size > 0"
-          class="content-box"
-          :ascendancies="ascendancies"
-        />
-      </template>
-    </div>
+          <AscendancySection 
+            v-if="ascendancies.ascendancyTrees.size > 0"
+            class="content-box"
+            :ascendancies="ascendancies"
+          />
+        </template>
+      </div>
 
-    <div class="justify-content-center">
-      <div class="output-stats sticky-top">
-        
+      <div class="justify-content-center">
+        <div class="output-stats sticky-top">
+          
+        </div>
       </div>
     </div>
   </div>

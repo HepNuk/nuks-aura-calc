@@ -1,12 +1,12 @@
 <template>
   <div class="tree-cluster-label">
-      <NotableNode class="node mb-1" :notable="cluster.notable"/>
-      <SmallNode 
-        v-for="(node, i) in cluster.smallNodes"
-        :key="'smallNode-' + i"
-        :node="node"
-        class="small-node" 
-      />
+    <NotableNode class="node mb-1" :notable="cluster.notable"/>
+    <SmallNode 
+      v-for="(node, i) in cluster.smallNodes"
+      :key="'smallNode-' + i"
+      :node="node"
+      class="small-node" 
+    />
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .small-node {
   padding-bottom: 0.5rem;
 }

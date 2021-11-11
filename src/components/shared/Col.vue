@@ -43,7 +43,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .collumn-item {
   padding: 0.3em;
 }

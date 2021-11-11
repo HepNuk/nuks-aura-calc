@@ -1,12 +1,14 @@
 <template>
   <div class="row">
     <Col 
-      v-for="acsendancy in ascendancies.ascendancyTrees"
-      :key="acsendancy[0]"
+      v-for="ascendancy in ascendancies.ascendancyTrees"
+      :key="ascendancy[0]"
     >
       <AscendancyCluster
-        :key="acsendancy[0]"
-        :acsendancy="acsendancy[1]"
+        :key="ascendancy[0]"
+        :acsendancy="ascendancy[1]"
+        :selected="(ascendancies.ascendancy === ascendancy[0])"
+        @click="ascendancies.selectAscendancy(ascendancy[0])"
       />
     </Col>
   </div>
@@ -60,6 +62,6 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
 </style>

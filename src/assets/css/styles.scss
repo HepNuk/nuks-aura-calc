@@ -12,7 +12,7 @@ body {
 
 .aura-app {
   padding: 1px;
-  color: #FFF;
+  color: #FFFFFF;
 }
 
 .title-header {
@@ -43,7 +43,7 @@ select{
   border: 1px solid #ccc;
   background: #222;
   font-size: 14px;
-  color: #fff;
+  color: #FFF;
   line-height: 25px;
   padding: 2px;
   width: 95px;
@@ -55,10 +55,14 @@ input[type=number]{
   border: 1px solid #ccc;
   background: #222;
   font-size: 14px;
-  color: #fff;
+  color: #FFF;
   line-height: 25px;
   padding: 0 2px;
   width: 50px;
   margin-right: 3px;
+}
+
+.b-rad {
+  border-radius: 5px;
 }
 
