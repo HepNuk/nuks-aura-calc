@@ -60,10 +60,6 @@ export default defineComponent({
       return this.key.toUpperCase().charAt(0) + this.key.slice(1, this.key.length);
     }
   },
-
-  mounted() {
-    console.log(this.key, this.ascendancy);
-  },
 });
 
 </script>

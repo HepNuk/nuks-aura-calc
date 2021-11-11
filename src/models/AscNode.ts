@@ -62,7 +62,6 @@ export default class AscNode extends AbsrtactNode {
   }
 
   private parseValue(regexMatch: string[]) {
-    // console.log(regexMatch)
     return parseFloat(regexMatch[1]);
   }
 

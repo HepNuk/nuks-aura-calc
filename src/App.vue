@@ -26,9 +26,14 @@
       </div>
 
       <div class="justify-content-center">
-        <div class="output-stats sticky-top">
-          {{ globalAuraEffect }}
-        </div>
+        <OutputSection 
+          class="output-stats sticky-top"
+          :global-aura-effect="globalAuraEffect"
+          :auras="auras"
+          :ascendancies="ascendancies"
+          :passive-tree="passiveTree"
+          :support-gems-static="supportGemsStatic"
+        />
       </div>
     </div>
   </div>
@@ -48,6 +53,7 @@ import Header from './components/shared/Header.vue';
 import AuraSection from './components/auraSection/AuraSection.vue';
 import TreeSection from './components/treeSection/TreeSection.vue';
 import AscendancySection from './components/asendancySection/AscendancySection.vue';
+import OutputSection from './components/outputSection/OutputSection.vue';
 
 export default defineComponent({
   name: 'App',
@@ -56,6 +62,7 @@ export default defineComponent({
     AuraSection,
     TreeSection,
     AscendancySection,
+    OutputSection,
   },
 
   data() {
@@ -88,33 +95,10 @@ export default defineComponent({
     await this.loadTreeData();
 
     console.log('Done!');
-
-    // this.testAura();
     this.loading = false;
   },
 
   methods: {
-    testAura() {
-      const discpline = this.auras.get('discipline')!;
-      discpline.level = 2;
-      discpline.altQuality = 2;
-      discpline.quality = 20;
-
-      console.log(this.auras.get('discipline')!.getStatLines(
-        0,
-        this.supportGemsStatic,
-      ));
-
-      console.log(this.auras.get('discipline')!.getQualityStatLines(
-        100,
-        this.supportGemsStatic,
-      ));
-      this.ascendancies.ascendancy = 'necromancer';
-      console.log(this.passiveTree);
-      console.log(this.ascendancies);
-      console.log(this.ascendancies.getAuraEffect());
-    },
-
     async loadAuras() {
       const res: any[] = await AurasServices.getAuras();
 

@@ -56,13 +56,6 @@ export default defineComponent({
       }
     },
   },
-
-  mounted() {
-    console.log(this.ascendancies);
-  },
-
-  methods: {
-  },
 });
 
 </script>
