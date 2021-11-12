@@ -1,7 +1,7 @@
 <template>
   <div class="aura-app">
     <Header class="mb-2" title="Nuk's PoE Aura stats calculator | Version : 0.1.0 (Beta)" version="3.16"/>
-    
+
     <Spinner v-if="loading"/>
     <div v-else-if="!loading" class="d-flex">
       <div class="flex-grow-1 me-2">
@@ -26,7 +26,7 @@
 
       <div class="justify-content-center">
         <OutputSection 
-          class="output-stats sticky-top"
+          class="output-stats sticky"
           v-bind="{
             globalAuraEffect,
             auras,
@@ -57,6 +57,7 @@ import AuraSection from './components/auraSection/AuraSection.vue';
 import TreeSection from './components/treeSection/TreeSection.vue';
 import AscendancySection from './components/asendancySection/AscendancySection.vue';
 import OutputSection from './components/outputSection/OutputSection.vue';
+
 
 export default defineComponent({
   name: 'App',
@@ -153,5 +154,8 @@ export default defineComponent({
 
 <style lang="scss">
 @import '@/assets/css/styles.scss';
-.sticky-top { top: 0.5em; }
+.sticky{ 
+  top: 0.5em; 
+  position: sticky;
+}
 </style>

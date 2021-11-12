@@ -65,7 +65,6 @@ export default defineComponent({
     position: absolute;
     top: -5px;
     left: -5px;
-    z-index: 10;
     float: left;
     width: 45px;
     height: 45px;
@@ -82,7 +81,6 @@ export default defineComponent({
   .small-node-border {
     position: absolute;
     left: -5px;
-    z-index: 10;
     float: left;
     width: 28px;
     margin-left: 7px;

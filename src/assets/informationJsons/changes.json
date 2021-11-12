@@ -1,0 +1,20 @@
+[
+  {
+    "version": [0, 1, 0],
+    "title": "Beta realeased",
+    "beta": true,
+    "date": "Nov 11th 2021",
+
+    "fixes": [
+    ],
+
+    "changes": [
+    ],
+
+    "added": [
+    ],
+
+    "removed": [
+    ]
+  }
+]

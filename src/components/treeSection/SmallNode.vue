@@ -40,7 +40,6 @@ export default defineComponent({
 
   .small-node-border {
     position: absolute;
-    z-index: 10;
     float: left;
     width: 28px;
     height: 28px;
