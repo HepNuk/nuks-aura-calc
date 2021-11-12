@@ -1,4 +1,6 @@
 import AscNode from './AscNode';
+import AFSstat from './AFSstat';
+import ReservationBasedStat from './ReservationBasedStat';
 
 export default class Ascendancy {
 
@@ -40,6 +42,41 @@ export default class Ascendancy {
     const ascNodes = this.ascendancyTrees.get(this.ascendancy);
     ascNodes.forEach((ascNode) => {
       callback(ascNode);
+    });
+  }
+
+  public forEachAFSStat(callback: (stat: AFSstat) => void) {
+    this.forEachNode((ascNode) => {
+      if (ascNode.active) {
+        console.log(ascNode);
+        ascNode.isAurasFromSkill.forEach((e, i) => {
+          if (e) callback(new AFSstat(ascNode.statTexts[i], ascNode.values[i]));
+        });
+      }
+    });
+  }
+
+  public forEachReservationBasedStat(callback: (stat: ReservationBasedStat) => void) {
+    this.forEachNode((ascNode) => {
+      if (ascNode.active) {
+        ascNode.statTexts.forEach((e, i) => {
+          if (ascNode.scalesWithReservation[i]) {
+            callback(new ReservationBasedStat(e, ascNode.values[i], ascNode.scalesWithReservation[i]));
+          }
+        });
+      }
+    });
+  }
+
+  public forEachMiscStat(callback: (stat: string) => void) {
+    this.forEachNode((ascNode) => {
+      if (ascNode.active) {
+        ascNode.statTexts.forEach((e, i) => {
+          if (!ascNode.isAuraEffect[i] && !ascNode.isAurasFromSkill[i] && !ascNode.scalesWithReservation[i]) {
+            callback(e);
+          }
+        });
+      }
     });
   }
 

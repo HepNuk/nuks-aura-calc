@@ -12,16 +12,52 @@
       :support-gems-static="supportGemsStatic"
       :global-aura-effect="globalAuraEffect"
     />
+
+    <AFSStat
+      v-bind="{
+        auras,
+        supportGemsStatic,
+        globalAuraEffect,
+        ascendancies,
+        passiveTree,
+      }"
+    />
+
+    <ReservationStat
+      v-bind="{
+        auras,
+        supportGemsStatic,
+        globalAuraEffect,
+        ascendancies,
+        passiveTree,
+      }"
+    />
+
+    <MiscStat
+      v-bind="{
+        auras,
+        supportGemsStatic,
+        globalAuraEffect,
+        ascendancies,
+        passiveTree,
+      }"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AuraStat from './AuraStat.vue';
+import AFSStat from './AFSStat.vue';
+import MiscStat from './MiscStat.vue';
+import ReservationStat from './ReservationStat.vue';
 
 export default defineComponent({
   components: {
     AuraStat,
+    AFSStat,
+    MiscStat,
+    ReservationStat,
   },
 
   props: {

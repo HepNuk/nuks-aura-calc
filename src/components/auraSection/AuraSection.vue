@@ -10,6 +10,10 @@
         :aura="aura[1]"
       />
     </Col>
+
+    <Col :cols="cols">
+      test
+    </Col>
   </div>
 </template>
 

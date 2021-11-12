@@ -86,6 +86,15 @@ export default class PlayerAura {
     return qualityStats;
   }
 
+  public auraEffectForGem(auraEffect: number, supportGems: Map<string, SupportGem>): number {
+    return this.localAuraEffect + auraEffect + this.getGenerosityAuraEffect(supportGems);
+  }
+
+  public aurasFromSkillsHelperArray(auraEffect: number, supportGems: Map<string, SupportGem>): number {
+    if (this.level === 0) return -1;
+    return this.auraEffectForGem(auraEffect, supportGems);
+  }
+
   // Private
 
   private getGenerosityAuraEffect(supportGems: Map<string, SupportGem>): number {
@@ -101,10 +110,6 @@ export default class PlayerAura {
     }
 
     return 0;
-  }
-
-  public auraEffectForGem(auraEffect: number, supportGems: Map<string, SupportGem>): number {
-    return this.localAuraEffect + auraEffect + this.getGenerosityAuraEffect(supportGems);
   }
 
   private handleNegativeValues(statIndex: number, line: string): string {

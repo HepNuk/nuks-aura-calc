@@ -1,29 +1,27 @@
 <template>
   <div class="aura-app">
     <Header class="mb-2" title="Nuk's PoE Aura stats calculator | WIP | ALPHA 0.1" version="3.16"/>
+    
+    <Spinner v-if="loading"/>
+    <div v-else-if="!loading" class="d-flex">
+      <div class="flex-grow-1 me-2">
+        <AuraSection 
+          v-if="auras.size > 0"
+          class="content-box" 
+          :auras="auras"
+        />
 
-    <div class="d-flex">
-      <div class="flex-grow-1 me-3">
-        <template v-if="!loading">
-          <AuraSection 
-            v-if="auras.size > 0"
-            class="content-box" 
-            :auras="auras"
-          />
+        <TreeSection 
+          v-if="passiveTree.treeClusters.size > 0"
+          class="content-box"
+          :passive-tree="passiveTree" 
+        />
 
-          <TreeSection 
-            v-if="passiveTree.treeClusters.size > 0"
-            class="content-box"
-            :passive-tree="passiveTree" 
-          />
-
-          <AscendancySection 
-            v-if="ascendancies.ascendancyTrees.size > 0"
-            class="content-box"
-            :ascendancies="ascendancies"
-          />
-        </template>
-        <Spinner v-else/>
+        <AscendancySection 
+          v-if="ascendancies.ascendancyTrees.size > 0"
+          class="content-box"
+          :ascendancies="ascendancies"
+        />
       </div>
 
       <div class="justify-content-center">
