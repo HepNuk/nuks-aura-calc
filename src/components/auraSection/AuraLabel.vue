@@ -9,7 +9,7 @@
       </div>
 
       <div class="right-group">
-        <img src="@/assets/img/gems/generosity.png">:
+        <img src="@/assets/img/gems/generosity.png">
         <select v-model="aura.generosityType">
           <option :value="0">None</option>
           <option :value="1">Generosity</option>
@@ -25,13 +25,13 @@
       </div>
 
       <div class="right-group">
-        <span class="details">AE:</span>
+        <span class="details">AE</span>
         <input v-model="aura.localAuraEffect" type="number" min="0" max="100" placeholder="AE">
 
-        <span class="details">Lvl:</span>
+        <span class="details">Lvl</span>
         <input v-model="aura.level" type="number" min="0" max="40" placeholder="Lvl">
 
-        <span class="details">Qual:</span>
+        <span class="details">Qual</span>
         <input
           v-model="aura.quality"
           type="number"
@@ -41,7 +41,7 @@
         >
 
         <span class="details">Alt:</span>
-        <select v-model="aura.altQuality">
+        <select v-model="aura.altQuality" style="width: 75px">
           <option value="0">None</option>
           <option v-if="altQualityCount > 1" value="1">Anom</option>
           <option v-if="altQualityCount > 2" value="2">Diverg</option>
@@ -119,6 +119,9 @@ export default defineComponent({
     height: 35px;
     // float: left;
     margin-right: 0.25rem;
+  }
+  .details {
+    margin-right: 0.15rem;
   }
 
   .aura-row {

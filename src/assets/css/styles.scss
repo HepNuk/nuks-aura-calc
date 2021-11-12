@@ -2,6 +2,7 @@
     font-family: itemFont;
     src: url(~@/assets/fonts/Fontin-Bold.ttf)
 }
+
 $lAccent: rgb(44, 54, 65);
 $dAccent: rgb(29, 33, 37);
 $label: rgb(0, 2, 2);
@@ -65,7 +66,7 @@ input[type=number]{
   color: #FFF;
   line-height: 25px;
   padding: 0 2px;
-  width: 50px;
+  width: 45px;
   margin-right: 3px;
 }
 
