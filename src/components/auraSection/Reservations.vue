@@ -17,7 +17,7 @@
       <div class="left-group">
         <span class="aura-title">
           <img src="@/assets/img/globes/mana.png">
-          Reserved Manaas
+          Reserved Mana
         </span>
       </div>
 

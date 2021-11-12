@@ -1,6 +1,6 @@
 <template>
   <div class="title-header px-3 py-2">
-    <h1>{{ title }}</h1>
+    <h1>{{ title }} | <a href="https://github.com/HepNuk/nuks-aura-calc/issues">Known Issues</a></h1>
     <p v-if="version" class="mb-0">
       <fa :icon="['fa','info-circle']"/>
       for Path of Exile version {{ version }}
