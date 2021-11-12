@@ -6,10 +6,15 @@
       </a>
     </template>
     
-    <template v-slot:modal>
-      <h3 class="p-1 mb-0">
-        Change History:
-      </h3>
+    <template v-slot:modal="{ closeModal }">
+      <div class="d-flex justify-content-between">
+        <h3 class="p-1 mb-0">
+          Change History
+        </h3>
+        <a class="close-button align-self-center me-2" @click="closeModal">
+          <fa :icon="['fa', 'times-circle']" color="#FFF"/>
+        </a>
+      </div>
       <hr class="mb-0 mt-1">
 
       <div class="changes-box mt-2">
@@ -93,14 +98,17 @@ export default defineComponent({
       changes,
     };
   },
-  mounted() {
-    console.log(changes);
-  }
 });
 
 </script>
 
 <style scoped lang="scss">
+.close-button  {
+  font-size: 25px;
+}
+.close-button:hover {
+  cursor: pointer;
+}
 .changes-box {
   max-height: 820px;
   overflow-y: auto;

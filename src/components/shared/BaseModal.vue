@@ -9,7 +9,7 @@
   >
     <div class="modal-style">
       <div class="modal-box">
-        <slot name="modal"/>
+        <slot name="modal" :closeModal="closeModal"/>
       </div>
     </div>
   </Modal>
