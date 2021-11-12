@@ -9,15 +9,15 @@ export default class ReservationBasedStat {
     this.scalesWith = scalesWith;
   }
 
-  public getScaledStatLine(reservedLife: number, reservedMana: number): string {
+  public getScaledStatLine(reservedValues: any): string {
     const scaleMultiplier = this.value / 100.0;
     let scaledValue = 0;
     switch (this.scalesWith) {
       case 'Life':
-        scaledValue = Math.floor(reservedLife * scaleMultiplier);
+        scaledValue = Math.floor(reservedValues.life * scaleMultiplier);
         break;
       case 'Mana':
-        scaledValue = Math.floor(reservedMana * scaleMultiplier);
+        scaledValue = Math.floor(reservedValues.mana * scaleMultiplier);
         break;
     }
 

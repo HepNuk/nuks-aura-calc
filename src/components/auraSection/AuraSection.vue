@@ -12,7 +12,7 @@
     </Col>
 
     <Col :cols="cols">
-      test
+      <Reservations v-bind="{ reservedValues }"/>
     </Col>
   </div>
 </template>
@@ -23,6 +23,7 @@ import { Vue3Mq } from '@/types';
 
 import Col from '@/components/shared/Col.vue';
 import AuraLabel from './AuraLabel.vue';
+import Reservations from './Reservations.vue';
 
 export default defineComponent({
   name: 'AuraSection',
@@ -35,10 +36,16 @@ export default defineComponent({
   components: {
     Col,
     AuraLabel,
+    Reservations,
   },
 
   props: {
     auras: {
+      type: Object,
+      require: true,
+    },
+
+    reservedValues: {
       type: Object,
       require: true,
     },

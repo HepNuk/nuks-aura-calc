@@ -30,6 +30,7 @@
         globalAuraEffect,
         ascendancies,
         passiveTree,
+        reservedValues,
       }"
     />
 
@@ -83,6 +84,11 @@ export default defineComponent({
     },
 
     supportGemsStatic: {
+      type: Object,
+      require: true,
+    },
+
+    reservedValues: {
       type: Object,
       require: true,
     },

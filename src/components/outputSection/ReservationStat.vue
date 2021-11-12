@@ -49,13 +49,11 @@ export default defineComponent({
       type: Object,
       require: true,
     },
-  },
 
-  data() {
-    return {
-      reservedLifed: 1000,
-      reservedMana: 1000,
-    };
+    reservedValues: {
+      type: Object,
+      require: true,
+    },
   },
 
   computed: {
@@ -63,7 +61,7 @@ export default defineComponent({
       const array: string[] = [];
 
       this.ascendancies.forEachReservationBasedStat((resStat: ReservationBasedStat) => {
-        const statLine = resStat.getScaledStatLine(this.reservedLifed, this.reservedMana);
+        const statLine = resStat.getScaledStatLine(this.reservedValues);
         if (statLine) array.push(statLine);
       });
 

@@ -8,7 +8,7 @@
         <AuraSection 
           v-if="auras.size > 0"
           class="content-box" 
-          :auras="auras"
+          v-bind="{ auras, reservedValues }"
         />
 
         <TreeSection 
@@ -27,11 +27,14 @@
       <div class="justify-content-center">
         <OutputSection 
           class="output-stats sticky-top"
-          :global-aura-effect="globalAuraEffect"
-          :auras="auras"
-          :ascendancies="ascendancies"
-          :passive-tree="passiveTree"
-          :support-gems-static="supportGemsStatic"
+          v-bind="{
+            globalAuraEffect,
+            auras,
+            ascendancies,
+            passiveTree,
+            supportGemsStatic,
+            reservedValues,
+          }"
         />
       </div>
     </div>
@@ -70,11 +73,12 @@ export default defineComponent({
     return {
       loading: false as boolean,
 
+      auras: new Map() as Map<string, PlayerAura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
       passiveTree: new Tree(),
       ascendancies: new Ascendancy(),
 
-      auras: new Map() as Map<string, PlayerAura>,
+      reservedValues: new Proxy({ life: 0, mana: 0 }, {})
     };
   },
 
