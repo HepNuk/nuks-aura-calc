@@ -13,7 +13,7 @@ export default class Translator {
     const stats: string[] = [];
 
     aura.static.stats.forEach((stat: any) => {
-      if (filterOutStats(stat.id)) {
+      if (filterOutStats(stat)) {
         let translation: any;
 
         if (aura.stat_translation_file.includes('/banner_aura_skill')) {
@@ -63,10 +63,11 @@ export default class Translator {
   }
 }
 
-export const filterOutStats = (stat: string): boolean => {
-  if (stat === 'base_deal_no_damage') return false;
-  if (stat === 'active_skill_base_radius_+') return false;
-  if (isSecondaryValue(stat)) return false;
+export const filterOutStats = (stat: any): boolean => {
+  if (stat.id === 'base_deal_no_damage') return false;
+  if (stat.id === 'active_skill_base_radius_+') return false;
+  if (stat.value !== undefined && stat.value === 0) return false;
+  if (isSecondaryValue(stat.id)) return false;
 
   return true;
 };

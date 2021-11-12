@@ -2,7 +2,7 @@ import Aura from './Aura';
 import SupportGem from './SupportGem';
 
 const STAT_REGEX = [
-  /You and nearby (?:A|a)llies (?:have |gain |deal )?([a-zA-Z0-9{ }%]*)/
+  /You and nearby (?:A|a)llies (?:have |gain |deal |are )?([a-zA-Z0-9{ }%]*)/
 ];
 
 const FILTER = {
@@ -170,7 +170,6 @@ export default class PlayerAura {
     const value = statValue * auraMultiploer * (quality ? quality : 1);
 
     if (integere) return Math.floor(value);
-    console.log(this.roundTo(value, 2))
     return this.roundTo(value, 2);
   }
 
