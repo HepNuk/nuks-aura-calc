@@ -28,7 +28,7 @@ export default class Aura {
       if (stat.value && stat.value !== 0) {
         statsPerLevel.push({value: stat.value}) ;
         j++;
-      } else if (filterOutStats(stat.id)) {
+      } else if (filterOutStats(stat)) {
         statsPerLevel.push([]);
         if (hasSecondaryValue(stat.id)) {
           Object.entries(aura.per_level).forEach((value: any, key: any): any => {
