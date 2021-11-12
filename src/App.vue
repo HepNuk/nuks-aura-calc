@@ -1,6 +1,6 @@
 <template>
   <div class="aura-app">
-    <Header class="mb-2" title="Nuk's PoE Aura stats calculator | WIP | ALPHA 0.1" version="3.16"/>
+    <Header class="mb-2" title="Nuk's PoE Aura stats calculator | Version : 0.1.0 (Beta)" version="3.16"/>
     
     <Spinner v-if="loading"/>
     <div v-else-if="!loading" class="d-flex">

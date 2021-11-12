@@ -48,7 +48,6 @@ export default class Ascendancy {
   public forEachAFSStat(callback: (stat: AFSstat) => void) {
     this.forEachNode((ascNode) => {
       if (ascNode.active) {
-        console.log(ascNode);
         ascNode.isAurasFromSkill.forEach((e, i) => {
           if (e) callback(new AFSstat(ascNode.statTexts[i], ascNode.values[i]));
         });

@@ -14,9 +14,9 @@
 * [x] ~~Add Passive tree nodes to frontend and style it.~~
 * [x] ~~Add Jewel Support to passives.~~
 * [x] ~~Add Ascendancies to frontend and style it.~~
-* [ ] Calculate Stats and dispaly on output section.
-* [ ] Add Auras from Skills support to output.
-* [ ] Add Other missing misc stats to output.
+* [x] ~~Calculate Stats and dispaly on output section.~~
+* [x] ~~Add Auras from Skills support to output.~~
+* [x] ~~Add Other missing misc stats to output.~~
 * [ ] Add save to clipboard and reset options
 * [ ] Add saving to local storage capabilities.
 * [ ] Add Export / Import capabilities.

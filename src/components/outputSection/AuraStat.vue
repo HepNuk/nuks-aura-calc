@@ -58,10 +58,6 @@ export default defineComponent({
       return this.aura.getQualityStatLines(this.globalAuraEffect, this.supportGemsStatic);
     }
   },
-
-  mounted() {
-    // console.log(this.aura);
-  }
 });
 
 </script>
