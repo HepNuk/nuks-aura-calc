@@ -1,39 +1,40 @@
 <template>
   <div class="aura-app">
     <Header class="mb-2" title="Nuk's PoE Aura stats calculator | WIP | ALPHA 0.1" version="3.16"/>
+    
+    <Spinner v-if="loading"/>
+    <div v-else-if="!loading" class="d-flex">
+      <div class="flex-grow-1 me-2">
+        <AuraSection 
+          v-if="auras.size > 0"
+          class="content-box" 
+          v-bind="{ auras, reservedValues }"
+        />
 
-    <div class="d-flex">
-      <div class="flex-grow-1 me-3">
-        <template v-if="!loading">
-          <AuraSection 
-            v-if="auras.size > 0"
-            class="content-box" 
-            :auras="auras"
-          />
+        <TreeSection 
+          v-if="passiveTree.treeClusters.size > 0"
+          class="content-box"
+          :passive-tree="passiveTree" 
+        />
 
-          <TreeSection 
-            v-if="passiveTree.treeClusters.size > 0"
-            class="content-box"
-            :passive-tree="passiveTree" 
-          />
-
-          <AscendancySection 
-            v-if="ascendancies.ascendancyTrees.size > 0"
-            class="content-box"
-            :ascendancies="ascendancies"
-          />
-        </template>
-        <Spinner v-else/>
+        <AscendancySection 
+          v-if="ascendancies.ascendancyTrees.size > 0"
+          class="content-box"
+          :ascendancies="ascendancies"
+        />
       </div>
 
       <div class="justify-content-center">
         <OutputSection 
           class="output-stats sticky-top"
-          :global-aura-effect="globalAuraEffect"
-          :auras="auras"
-          :ascendancies="ascendancies"
-          :passive-tree="passiveTree"
-          :support-gems-static="supportGemsStatic"
+          v-bind="{
+            globalAuraEffect,
+            auras,
+            ascendancies,
+            passiveTree,
+            supportGemsStatic,
+            reservedValues,
+          }"
         />
       </div>
     </div>
@@ -72,11 +73,12 @@ export default defineComponent({
     return {
       loading: false as boolean,
 
+      auras: new Map() as Map<string, PlayerAura>,
       supportGemsStatic: new Map() as Map<string, SupportGem>,
       passiveTree: new Tree(),
       ascendancies: new Ascendancy(),
 
-      auras: new Map() as Map<string, PlayerAura>,
+      reservedValues: new Proxy({ life: 0, mana: 0 }, {})
     };
   },
 

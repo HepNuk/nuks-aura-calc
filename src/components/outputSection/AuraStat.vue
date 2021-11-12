@@ -60,7 +60,7 @@ export default defineComponent({
   },
 
   mounted() {
-    console.log(this.aura);
+    // console.log(this.aura);
   }
 });
 
@@ -77,11 +77,12 @@ li {
 }
 
 .aura-stat {
-  color:rgb(255, 255, 255);
-  font-size: 14px;
+  color:rgb(141, 173, 219);
+  font-size: 15px;
 }
 
 .separetor {
+  color:rgb(179, 189, 206);
   text-align: justify;
 }
 </style>
