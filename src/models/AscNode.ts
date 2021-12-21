@@ -90,7 +90,7 @@ export default class AscNode extends AbsrtactNode {
 
     const value = this.parseValue(stat.match(STAT_REGEX.takeIncreasedDamage));
     this.values.push(value);
-    this.statTexts.push(`Enemies take ${value}% increased Damage`);
+    this.statTexts.push(`Nearby Enemies take ${value}% increased Damage`);
   }
 
   private setupGrantsXOfReservation(stat: string) {

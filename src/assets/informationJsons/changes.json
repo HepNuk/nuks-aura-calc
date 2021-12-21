@@ -1,5 +1,24 @@
 [
   {
+    "version": [0, 1, 1],
+    "title": "Small Fixes",
+    "beta": true,
+    "date": "Dec 20th 2021",
+
+    "fixes": [
+      "Nearby Enemies take increased damage"
+    ],
+
+    "changes": [
+    ],
+
+    "added": [
+    ],
+
+    "removed": [
+    ]
+  },
+  {
     "version": [0, 1, 0],
     "title": "Beta realeased",
     "beta": true,

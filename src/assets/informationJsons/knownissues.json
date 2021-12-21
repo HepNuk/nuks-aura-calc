@@ -20,13 +20,13 @@
     "fixed": false
   },
   {
-    "title": "Enemies take X% increased Damage",
-    "desc": "This wording doesnt work in Path of Building.",
-    "fixed": false
-  },
-  {
     "title": "Missing section for Aura Effect from Weapons.",
     "desc": "",
     "fixed": false
+  },
+  {
+    "title": "Enemies take X% increased Damage",
+    "desc": "This wording doesnt work in Path of Building.",
+    "fixed": true
   }
 ]
