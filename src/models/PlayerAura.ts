@@ -53,7 +53,7 @@ export default class PlayerAura {
 
         } else {
           this.auraDetails.statsPerLevel[i][level - 1].forEach((e: any, j: number) => {
-            const isIntegere = !(/% Regenerate/.test(line));
+            const isIntegere = !(/Regenerate/.test(line));
             const statValue: number = this.scaleStatWithAuraEffect(e.value, ae, isIntegere);
 
             line = this.youAndNearbyAlliesStatLine(line, statValue, i, j);
@@ -76,7 +76,7 @@ export default class PlayerAura {
 
     this.auraDetails.qualityStats[aQual].forEach((qualityLine, i) => {
       if (FILTER.youAndNearby.test(qualityLine) || FILTER.nearbyEnemies.test(qualityLine)) {
-        const isIntegere = !(/% Regenerate/.test(qualityLine));
+        const isIntegere = !(/Regenerate/.test(qualityLine));
         const statValue: number = this.scaleStatWithAuraEffect(this.auraDetails.statsPerQuality[aQual][i], ae, isIntegere, this.quality);
         const line = this.youAndNearbyAlliesQualityLine(qualityLine, statValue, i, aQual);
 

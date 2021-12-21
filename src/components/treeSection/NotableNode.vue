@@ -24,7 +24,7 @@ export default defineComponent({
       return this.notable.active ? 'active' : '';
     },
 
-    nodeBg() {
+    nodeBg(): string {
       try {
         return require(`@/assets/img/${this.notable.icon}`);
       } catch {

@@ -1,12 +1,12 @@
 [
   {
     "title": "Vitality has incorrect values.",
-    "desc": "",
+    "desc": "(This is an issue with RePoE)",
     "fixed": false
   },
   {
     "title": "Clarity has incorrect values.",
-    "desc": "",
+    "desc": "(This is an issue with RePoE)",
     "fixed": false
   },
   {
@@ -15,14 +15,14 @@
     "fixed": false
   },
   {
-    "title": "Rounding Issues with some decimal Auras",
+    "title": "Missing section for Aura Effect from Weapons.",
     "desc": "",
     "fixed": false
   },
   {
-    "title": "Missing section for Aura Effect from Weapons.",
+    "title": "Rounding Issues with some decimal Auras",
     "desc": "",
-    "fixed": false
+    "fixed": true
   },
   {
     "title": "Enemies take X% increased Damage",

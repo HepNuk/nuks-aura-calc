@@ -6,7 +6,8 @@
     "date": "Dec 20th 2021",
 
     "fixes": [
-      "Nearby Enemies take increased damage"
+      "Nearby Enemies take increased damage",
+      "Rounding issues for non-integere stats"
     ],
 
     "changes": [
