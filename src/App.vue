@@ -1,39 +1,24 @@
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="aura-app">
+    <MainHeader title="Nuk's PoE Aura stats calculator" version="3.16" />
+    <MySpinner v-if="loading" />
+    <MyInput type="number" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent, ref } from 'vue';
+import MainHeader from './components/shared/MainHeader.vue';
+
 export default defineComponent({
-  components: {
-    HelloWorld,
-  },
+  components: { MainHeader },
 
   setup() {
-    return {};
+    const loading = ref(true);
+
+    return { loading };
   },
 });
 </script>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
