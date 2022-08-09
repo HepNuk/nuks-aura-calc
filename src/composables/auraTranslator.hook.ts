@@ -1,19 +1,28 @@
-export default class Translator {
-  private translations: any;
-  private bannerTranslations: any;
-  private skillTranslations: any;
+import { Ref, inject, unref } from 'vue';
 
-  constructor(
-    translations: any,
-    bannerTranslations: any,
-    skillTranslations: any
+export function useAuraTranslator() {
+  const translations = inject<Ref>('translation');
+  const bannerTranslations = inject<Ref>('bannerTranslations');
+  const skillTranslations = inject<Ref>('skillTranslations');
+
+  if (
+    !translations?.value ||
+    !bannerTranslations?.value ||
+    !skillTranslations?.value
   ) {
-    this.translations = translations;
-    this.bannerTranslations = bannerTranslations;
-    this.skillTranslations = skillTranslations;
+    throw new Error("Aura Translations we're not loaded");
   }
 
-  public getAuraStat = (aura: any): string[] => {
+  function fixRePoETransaltionErrors(line: string): string {
+    const fixedLines = line.replace(
+      "Your and nearby Allies'",
+      'You and nearby allies'
+    );
+    // Add more wording error fixes here.
+    return fixedLines;
+  }
+
+  const getAuraStat = (aura: any): string[] => {
     const stats: string[] = [];
 
     aura.static.stats.forEach((stat: any) => {
@@ -21,24 +30,22 @@ export default class Translator {
         let translation: any;
 
         if (aura.stat_translation_file.includes('/banner_aura_skill')) {
-          translation = this.bannerTranslations.find((tr: any) =>
+          translation = unref(bannerTranslations).find((tr: any) =>
             tr.ids.includes(stat.id)
           );
         } else if (aura.stat_translation_file.includes('/aura_skill')) {
-          translation = this.translations.find((tr: any) =>
+          translation = unref(translations).find((tr: any) =>
             tr.ids.includes(stat.id)
           );
         } else {
-          translation = this.skillTranslations.find((tr: any) =>
+          translation = unref(skillTranslations).find((tr: any) =>
             tr.ids.includes(stat.id)
           );
         }
         if (!translation) {
           stats.push(stat.id);
         } else {
-          stats.push(
-            this.fixRePoETransaltionErrors(translation.English[0].string)
-          );
+          stats.push(fixRePoETransaltionErrors(translation.English[0].string));
         }
       }
     });
@@ -46,7 +53,7 @@ export default class Translator {
     return stats;
   };
 
-  public getQualityStat = (aura: any): string[][] => {
+  const getQualityStat = (aura: any): string[][] => {
     const qualityStats: string[][] = [];
 
     let currentSet = -1;
@@ -58,15 +65,15 @@ export default class Translator {
 
       let translation: any;
       if (aura.stat_translation_file.includes('/banner_aura_skill')) {
-        translation = this.bannerTranslations.find((tr: any) =>
+        translation = unref(bannerTranslations).find((tr: any) =>
           tr.ids.includes(stat.id)
         );
       } else if (aura.stat_translation_file.includes('/aura_skill')) {
-        translation = this.translations.find((tr: any) =>
+        translation = unref(translations).find((tr: any) =>
           tr.ids.includes(stat.id)
         );
       } else {
-        translation = this.skillTranslations.find((tr: any) =>
+        translation = unref(skillTranslations).find((tr: any) =>
           tr.ids.includes(stat.id)
         );
       }
@@ -74,7 +81,7 @@ export default class Translator {
         qualityStats[currentSet].push(stat.id);
       } else {
         qualityStats[currentSet].push(
-          this.fixRePoETransaltionErrors(translation.English[0].string)
+          fixRePoETransaltionErrors(translation.English[0].string)
         );
       }
     });
@@ -82,14 +89,10 @@ export default class Translator {
     return qualityStats;
   };
 
-  private fixRePoETransaltionErrors(line: string): string {
-    const fixedLines = line.replace(
-      "Your and nearby Allies'",
-      'You and nearby allies'
-    );
-    // Add more wording error fixes here.
-    return fixedLines;
-  }
+  return {
+    tAura: getAuraStat,
+    tQuality: getQualityStat,
+  };
 }
 
 export const filterOutStats = (stat: any): boolean => {
