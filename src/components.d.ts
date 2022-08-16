@@ -1,5 +1,5 @@
 import type { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { globalComponents } from '~/globalComponents/index';
+import { globalComponents } from '~/globalComponents';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -7,6 +7,8 @@ declare module '@vue/runtime-core' {
     MySpinner: typeof globalComponents.MySpinner;
     MyInput: typeof globalComponents.MyInput;
     MySelect: typeof globalComponents.MySelect;
+    MyCol: typeof globalComponents.MyRow;
+    MyRow: typeof globalComponents.MyCol;
   }
 }
 

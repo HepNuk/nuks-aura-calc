@@ -1,29 +1,12 @@
-import { ref, watch, readonly } from 'vue';
+import { ref, watch } from 'vue';
 import { AuraService } from '~/services/AurasServices';
+import { useQuery } from './common.hook';
 import PlayerAura from '~/models/PlayerAura';
 import Aura from '~/models/Aura';
 import { useAuraTranslator } from './auraTranslator.hook';
 import Tree from '~/models/Tree';
 import Ascendancy from '~/models/Ascendancy';
 import SupportGem from '~/models/SupportGem';
-
-export function useQuery<T = any>(fetchFunction: () => Promise<any>) {
-  const isLoadingRef = ref(true);
-  const isLoading = readonly(isLoadingRef);
-  const data = ref<T>();
-
-  function fetchData() {
-    isLoadingRef.value = true;
-
-    fetchFunction().then((res) => {
-      data.value = res;
-      isLoadingRef.value = false;
-    });
-  }
-  fetchData();
-
-  return { data, isLoading, refech: fetchData };
-}
 
 export function useLoadAuras() {
   const { tAura, tQuality } = useAuraTranslator();
@@ -42,9 +25,7 @@ export function useLoadAuras() {
         });
 
         data.value.forEach((aura: any) => {
-          const id: string = aura.active_skill.display_name
-            .replaceAll(' ', '')
-            .toLowerCase();
+          const id: string = aura.active_skill.display_name.replaceAll(' ', '').toLowerCase();
 
           const auraDetail = new Aura(id, tAura(aura), tQuality(aura), aura);
           auras.value.set(id, new PlayerAura(id, auraDetail));
@@ -86,13 +67,9 @@ export function useLoadTreeData() {
 
   watch(isLoading, () => {
     if (!isLoading.value) {
-      data.value.nodes.forEach((node: any) =>
-        passiveTree.value.addNewNode(node)
-      );
+      data.value.nodes.forEach((node: any) => passiveTree.value.addNewNode(node));
 
-      data.value.ascNodes.forEach((node: any) =>
-        ascendancies.value.addNewNode(node)
-      );
+      data.value.ascNodes.forEach((node: any) => ascendancies.value.addNewNode(node));
 
       console.log('Passives Loaded.');
     }
@@ -106,15 +83,9 @@ export async function getStatTranslations() {
   const bannerTranslations = ref();
   const skillTranslations = ref();
 
-  translations.value = await AuraService.getStatTranslation(
-    'stat_translations/banner_aura_skill'
-  );
-  bannerTranslations.value = await AuraService.getStatTranslation(
-    'stat_translations/skill'
-  );
-  skillTranslations.value = await AuraService.getStatTranslation(
-    'stat_translations/aura_skill'
-  );
+  translations.value = await AuraService.getStatTranslation('stat_translations/banner_aura_skill');
+  bannerTranslations.value = await AuraService.getStatTranslation('stat_translations/skill');
+  skillTranslations.value = await AuraService.getStatTranslation('stat_translations/aura_skill');
 
   return {
     translations,

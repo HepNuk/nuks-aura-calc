@@ -3,7 +3,10 @@ module.exports = {
     node: true,
   },
   parser: 'vue-eslint-parser',
-  parserOptions: { parser: '@typescript-eslint/parser' },
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    extraFileExtensions: ['.vue'],
+  },
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
@@ -13,8 +16,18 @@ module.exports = {
   ],
   plugins: ['vue', 'prettier'],
   rules: {
+    '@typescript-eslint/no-empty-function': 'warn',
+    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'no-trailing-spaces': ['warn'],
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        varsIgnorePattern: '^_', // Variables can have leading underscore
+        argsIgnorePattern: '^_', // Function arguments can have leading underscore
+      },
+    ],
     'vue/no-unused-components': 'warn',
     'no-constant-condition': 'warn',
     curly: ['warn', 'all'],
