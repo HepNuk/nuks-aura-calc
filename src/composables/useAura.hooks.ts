@@ -67,15 +67,6 @@ export function usePassiveTree() {
   };
 }
 
-export function useAscendancies() {
-  const { ascendancies } = inject<{
-    ascendancies: Ref<Ascendancy>;
-  }>('ascendancies')!;
-  return {
-    ascendancies,
-  };
-}
-
 export function useGlobalAuraEffect() {
   const { globalAuraEffect } = inject<{
     globalAuraEffect: ComputedRef<number>;
@@ -153,28 +144,45 @@ export function useJewelSockets() {
   };
 }
 
-export function usePassiveNode(id: string) {
-  const { passiveTree } = usePassiveTree();
-
-  // const passiveNode = passiveTree.value.
-}
-
-export function usePassiveNotable(id: string) {
-  const { passiveTree } = usePassiveTree();
-
-  // const passiveNode = passiveTree.value.get;
-}
-
-export function usePassiveNode2(id: string) {
-  const { passiveTree } = usePassiveTree();
-
-  // const passiveNode = passiveTree.value
-}
-
-export function useAscendancyNode(id: string) {
+export function useAscendancies() {
   const { ascendancies } = inject<{
     ascendancies: Ref<Ascendancy>;
   }>('ascendancies')!;
+  return {
+    ascendancies,
+  };
+}
 
-  // const ascendancyNode = ascendancies
+export function useAscendancyTree() {
+  const { ascendancies } = useAscendancies();
+  const ascendancyTrees = ascendancies.value.ascendancyTrees;
+  function selectAscendancy(asc: string) {
+    ascendancies.value.selectAscendancy(asc);
+  }
+
+  return { ascendancyTrees, selectAscendancy };
+}
+
+export function useAscendancy(ascendancyId: string) {
+  const { ascendancies } = useAscendancies();
+  const ascendancy = ascendancies.value.ascendancyTrees.get(ascendancyId)!.sort((a, b) => {
+    if (a.isNotable && b.isNotable) {
+      return 0;
+    }
+    if (a.isNotable) {
+      return -1;
+    }
+    if (b.isNotable) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return { ascendancy };
+}
+
+export function useCurrentAscendancy() {
+  const { ascendancies } = useAscendancies();
+  const currentAscendancy = computed(() => ascendancies.value.ascendancy);
+  return { currentAscendancy };
 }

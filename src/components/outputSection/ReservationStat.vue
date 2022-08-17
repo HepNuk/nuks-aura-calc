@@ -1,14 +1,8 @@
 <template>
   <div>
     <template v-if="resStatArray.length > 0">
-      <li class="aura-name">
-        Reservation Based Buffs
-      </li>
-      <li
-        v-for="(line, index) in resStatArray"
-        :key="'resstat-' + index"
-        class="aura-stat"
-      >
+      <li class="aura-name">Reservation Based Buffs</li>
+      <li v-for="(line, index) in resStatArray" :key="'resstat-' + index" class="aura-stat">
         {{ line }}
       </li>
       <li class="aura-stat separetor">
@@ -26,7 +20,7 @@ export default defineComponent({
   props: {
     auras: {
       type: Object,
-      require: true,
+      required: true,
     },
 
     globalAuraEffect: {
@@ -37,22 +31,22 @@ export default defineComponent({
 
     supportGemsStatic: {
       type: Object,
-      require: true,
+      required: true,
     },
 
     ascendancies: {
       type: Object,
-      require: true,
+      required: true,
     },
 
     passiveTree: {
       type: Object,
-      require: true,
+      required: true,
     },
 
     reservedValues: {
       type: Object,
-      require: true,
+      required: true,
     },
   },
 
@@ -62,14 +56,15 @@ export default defineComponent({
 
       this.ascendancies.forEachReservationBasedStat((resStat: ReservationBasedStat) => {
         const statLine = resStat.getScaledStatLine(this.reservedValues);
-        if (statLine) array.push(statLine);
+        if (statLine) {
+          array.push(statLine);
+        }
       });
 
       return array;
     },
   },
 });
-
 </script>
 
 <style scoped lang="scss">
@@ -83,7 +78,7 @@ li {
 }
 
 .aura-stat {
-  color:rgb(141, 173, 219);
+  color: rgb(141, 173, 219);
   font-size: 15px;
 }
 
