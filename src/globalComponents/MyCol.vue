@@ -26,8 +26,7 @@ export default defineComponent({
       if (props.cols) {
         return props.cols;
       }
-
-      switch (mq.current) {
+      switch (mq.value) {
         case 'xs':
         case 'sm':
           return 'col-12';

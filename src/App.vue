@@ -44,8 +44,8 @@ export default defineComponent({
     const { auras, isLoadingAuras } = useLoadAuras();
     const { supportGemsStatic, isLoadingSupportGems } = useLoadSupportGems();
     const { passiveTree, ascendancies, isLoadingTreeData } = useLoadTreeData();
-
     const reservedValues = ref({ life: 0, mana: 0 });
+
     const updateReservedLife = (life: number) => {
       reservedValues.value.life = life;
     };

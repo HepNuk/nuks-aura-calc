@@ -1,4 +1,4 @@
-import { ref, inject, readonly } from 'vue';
+import { ref, inject, readonly, computed } from 'vue';
 import type { Vue3Mq } from '~/types/global-types';
 
 export function imageUrl(imagePath: string, metaUrl = import.meta.url) {
@@ -7,7 +7,8 @@ export function imageUrl(imagePath: string, metaUrl = import.meta.url) {
 }
 
 export function useMq() {
-  const mq = inject<Vue3Mq>('mq')!;
+  const mqInjected = inject<Vue3Mq>('mq')!;
+  const mq = computed(() => mqInjected.current);
   return { mq };
 }
 

@@ -1,6 +1,7 @@
 <template>
   <MyRow>
-    <MyCol v-for="ascendancyId in ascendancyTreeIds" :key="ascendancyId" :cols="bootstrapColsClass">
+    <MyCol v-for="ascendancyId in ascendancyTreeIds" :key="ascendancyId">
+      <!-- :cols="bootstrapColClass || 'col-12'" -->
       <AscendancyCluster
         :ascendancy-id="ascendancyId"
         :selected="currentAscendancy === ascendancyId"
@@ -27,27 +28,27 @@ export default defineComponent({
     const { mq } = useMq();
     const { ascendancyTrees, selectAscendancy } = useAscendancyTree();
     const { currentAscendancy } = useCurrentAscendancy();
-    const bootstrapColsClass = computed(() => {
-      switch (mq.current) {
-        case 'xs':
-        case 'sm':
-          return 'col-12';
-        case 'md':
-        case 'lg':
-          return 'col-6';
-        default:
-          return 'col-3';
-      }
-    });
 
     const ascendancyTreeIds = computed(() => ascendancyTrees.keys());
+    // const bootstrapColClass = computed(() => {
+    //   switch (mq.value) {
+    //     case 'xs':
+    //     case 'sm':
+    //       return 'col-12';
+    //     case 'md':
+    //     case 'lg':
+    //       return 'col-6';
+    //     default:
+    //       return 'col-3';
+    //   }
+    // });
 
     return {
       selectAscendancy,
       ascendancyTreeIds,
       ascendancyTrees,
       currentAscendancy,
-      bootstrapColsClass,
+      // bootstrapColClass,
     };
   },
 });
