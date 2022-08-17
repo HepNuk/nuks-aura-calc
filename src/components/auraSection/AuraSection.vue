@@ -1,12 +1,12 @@
 <template>
   <MyRow class="aura-section">
-    <MyCol v-for="aura in auraEntries" :key="aura[0]">
-      <AuraLabel :id="aura[0]" :key="aura[0]" />
+    <MyCol v-for="auraId in auraIds" :key="auraId">
+      <AuraLabel :key="auraId" :aura-id="auraId" />
     </MyCol>
 
-    <!-- <MyCol>
-      <Reservations />
-    </MyCol> -->
+    <MyCol>
+      <LifeAndManaReservations />
+    </MyCol>
   </MyRow>
 </template>
 
@@ -14,7 +14,7 @@
 import { defineComponent, computed } from 'vue';
 
 import AuraLabel from './AuraLabel.vue';
-// import Reservations from './Reservations.vue';
+import LifeAndManaReservations from './LifeAndManaReservations.vue';
 import { useAuras } from '~/composables/useAura.hooks';
 
 export default defineComponent({
@@ -22,13 +22,13 @@ export default defineComponent({
 
   components: {
     AuraLabel,
-    // Reservations,
+    LifeAndManaReservations,
   },
 
   setup() {
     const { auras } = useAuras();
-    const auraEntries = computed(() => auras.value.entries());
-    return { auraEntries };
+    const auraIds = computed(() => auras.value.keys());
+    return { auraIds };
   },
 });
 </script>

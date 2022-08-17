@@ -12,6 +12,29 @@ export function useAuraIcons(id: string) {
   return { auraIcon, gemIcon };
 }
 
+export function useReserverstions() {
+  const { reservedValues, updateReservedLife, updateReservedMana } = inject<{
+    reservedValues: Ref<{ life: number; mana: number }>;
+    updateReservedLife: (life: number) => void;
+    updateReservedMana: (mana: number) => void;
+  }>('reservedValues')!;
+
+  const reservedLife = computed({
+    get: () => reservedValues.value.life,
+    set: (life: number) => updateReservedLife(life),
+  });
+
+  const reservedMana = computed({
+    get: () => reservedValues.value.mana,
+    set: (mana: number) => updateReservedMana(mana),
+  });
+
+  return {
+    reservedLife,
+    reservedMana,
+  };
+}
+
 export function useAuras() {
   const { auras } = inject<{
     auras: Ref<Map<string, PlayerAura>>;

@@ -19,14 +19,14 @@ import { useAura, useGlobalAuraEffect, useSupportGems } from '~/composables/useA
 
 export default defineComponent({
   props: {
-    id: {
+    auraId: {
       type: String,
       required: true,
     },
   },
 
   setup(props) {
-    const { aura } = useAura(props.id);
+    const { aura } = useAura(props.auraId);
     const { supportGemsStatic } = useSupportGems();
     const { globalAuraEffect } = useGlobalAuraEffect();
 

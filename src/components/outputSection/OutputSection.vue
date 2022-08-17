@@ -5,7 +5,7 @@
       <p>{{ globalAuraEffect }}% Global Aura Effect</p>
     </div>
 
-    <AuraStat v-for="aura in auraEntries" :id="aura[0]" :key="aura[0]" />
+    <AuraStat v-for="auraId in auraIds" :key="auraId" :aura-id="auraId" />
 
     <!-- <AFSStat
       v-bind="{
@@ -58,10 +58,10 @@ export default defineComponent({
 
   setup() {
     const { auras } = useAuras();
-    const auraEntries = computed(() => auras.value.entries());
+    const auraIds = computed(() => auras.value.keys());
     const { globalAuraEffect } = useGlobalAuraEffect();
 
-    return { auraEntries, globalAuraEffect };
+    return { auraIds, globalAuraEffect };
   },
 });
 </script>

@@ -59,14 +59,14 @@ import { imageUrl } from '~/composables/common.hook';
 
 export default defineComponent({
   props: {
-    id: {
+    auraId: {
       type: String,
       required: true,
     },
   },
 
   setup(props) {
-    const { aura } = useAura(props.id);
+    const { aura } = useAura(props.auraId);
 
     const maxGenerosityLevel = computed(() => {
       switch (aura.generosityType) {
