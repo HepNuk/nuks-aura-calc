@@ -8,7 +8,6 @@
     <AuraStat v-for="auraId in auraIds" :key="auraId" :aura-id="auraId" />
     <AFSStat />
     <ReservationStat />
-
     <MiscStat />
   </div>
 </template>

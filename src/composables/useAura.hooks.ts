@@ -1,4 +1,4 @@
-import { Ref, ref, inject, computed, provide, ComputedRef } from 'vue';
+import { Ref, ref, inject, computed, ComputedRef } from 'vue';
 import Ascendancy from '~/models/Ascendancy';
 import type PlayerAura from '~/models/PlayerAura';
 import type SupportGem from '~/models/SupportGem';
@@ -80,14 +80,13 @@ export function useGlobalAuraEffect() {
 
 export function useAura(id: string) {
   const { auras } = useAuras();
-
-  if (!auras.value.get(id)) {
-    throw new Error(`Cannot find aura with id : ${id}`);
-  } else {
-    return {
-      aura: auras.value.get(id)!,
-    };
-  }
+  const aura = computed({
+    get: () => auras.value.get(id)!,
+    set: (v) => auras.value.set(id, v),
+  });
+  return {
+    aura,
+  };
 }
 
 export function useSupportGem(id: string) {
@@ -166,20 +165,12 @@ export function useAscendancyTree() {
 
 export function useAscendancy(ascendancyId: string) {
   const { ascendancies } = useAscendancies();
-  const ascendancy = ascendancies.value.ascendancyTrees.get(ascendancyId)!.sort((a, b) => {
-    if (a.isNotable && b.isNotable) {
-      return 0;
-    }
-    if (a.isNotable) {
-      return -1;
-    }
-    if (b.isNotable) {
-      return 1;
-    }
-    return 0;
-  });
+  const ascendancy = ascendancies.value.ascendancyTrees.get(ascendancyId)!;
+  function toggleNode(index: number, newValue: boolean) {
+    ascendancies.value.ascendancyTrees.get(ascendancyId)![index].active = newValue;
+  }
 
-  return { ascendancy };
+  return { ascendancy, toggleNode };
 }
 
 export function useCurrentAscendancy() {

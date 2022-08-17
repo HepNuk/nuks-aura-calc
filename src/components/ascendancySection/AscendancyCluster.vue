@@ -2,13 +2,13 @@
   <div class="asc-cluster" :class="{ 'asc-selected': selected }" :style="cssVars">
     <h5 class="ms-1 mb-3 mt-1">{{ name }}</h5>
     <AscendancyNode
-      v-for="node in ascendancy"
+      v-for="(node, index) in ascendancy"
       :key="node.id"
       class="ms-2"
       :node="node"
       :selected="selected"
       :is-notable="node.isNotable || ascendancyId === 'ascendant'"
-      @toggle="node.active != node.active"
+      @toggle="toggleNode(index, !node.active)"
     />
   </div>
 </template>
@@ -20,7 +20,10 @@ import { useAscendancy } from '~/composables/useAura.hooks';
 import AscendancyNode from './AscendancyNode.vue';
 
 export default defineComponent({
-  components: { AscendancyNode },
+  components: {
+    AscendancyNode,
+  },
+
   props: {
     ascendancyId: {
       type: String,
@@ -34,7 +37,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { ascendancy } = useAscendancy(props.ascendancyId);
+    const { ascendancy, toggleNode } = useAscendancy(props.ascendancyId);
 
     const name = computed(
       () =>
@@ -51,6 +54,7 @@ export default defineComponent({
     }));
 
     return {
+      toggleNode,
       bgImage,
       opacity,
       cssVars,

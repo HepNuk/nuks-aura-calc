@@ -3,7 +3,6 @@ import AFSstat from './AFSstat';
 import ReservationBasedStat from './ReservationBasedStat';
 
 export default class Ascendancy {
-
   public ascendancy: string;
   public ascendancyTrees: Map<string, AscNode[]>;
 
@@ -17,10 +16,26 @@ export default class Ascendancy {
     const treeNode = new AscNode(ascNodes);
 
     if (this.ascendancyTrees.has(ascendancy)) {
-      this.ascendancyTrees.get(ascendancy).push(treeNode);
+      this.ascendancyTrees.get(ascendancy)!.push(treeNode);
     } else {
       this.ascendancyTrees.set(ascendancy, [treeNode]);
     }
+
+    this.ascendancyTrees.set(
+      ascendancy,
+      this.ascendancyTrees.get(ascendancy)!.sort((a, b) => {
+        if (a.isNotable && b.isNotable) {
+          return 0;
+        }
+        if (a.isNotable) {
+          return -1;
+        }
+        if (b.isNotable) {
+          return 1;
+        }
+        return 0;
+      })
+    );
   }
 
   public getAuraEffect(): number {
@@ -28,7 +43,9 @@ export default class Ascendancy {
     this.forEachNode((ascNode) => {
       if (ascNode.active) {
         ascNode.isAuraEffect.forEach((e, i) => {
-          if (e) ae += ascNode.values[i];
+          if (e) {
+            ae += ascNode.values[i];
+          }
         });
       }
     });
@@ -37,7 +54,9 @@ export default class Ascendancy {
   }
 
   public forEachNode(callback: (node: AscNode) => void) {
-    if (!this.ascendancy) return;
+    if (!this.ascendancy) {
+      return;
+    }
 
     const ascNodes = this.ascendancyTrees.get(this.ascendancy);
     ascNodes.forEach((ascNode) => {
@@ -49,7 +68,9 @@ export default class Ascendancy {
     this.forEachNode((ascNode) => {
       if (ascNode.active) {
         ascNode.isAurasFromSkill.forEach((e, i) => {
-          if (e) callback(new AFSstat(ascNode.statTexts[i], ascNode.values[i]));
+          if (e) {
+            callback(new AFSstat(ascNode.statTexts[i], ascNode.values[i]));
+          }
         });
       }
     });
@@ -60,7 +81,9 @@ export default class Ascendancy {
       if (ascNode.active) {
         ascNode.statTexts.forEach((e, i) => {
           if (ascNode.scalesWithReservation[i]) {
-            callback(new ReservationBasedStat(e, ascNode.values[i], ascNode.scalesWithReservation[i]));
+            callback(
+              new ReservationBasedStat(e, ascNode.values[i], ascNode.scalesWithReservation[i])
+            );
           }
         });
       }
@@ -71,7 +94,11 @@ export default class Ascendancy {
     this.forEachNode((ascNode) => {
       if (ascNode.active) {
         ascNode.statTexts.forEach((e, i) => {
-          if (!ascNode.isAuraEffect[i] && !ascNode.isAurasFromSkill[i] && !ascNode.scalesWithReservation[i]) {
+          if (
+            !ascNode.isAuraEffect[i] &&
+            !ascNode.isAurasFromSkill[i] &&
+            !ascNode.scalesWithReservation[i]
+          ) {
             callback(e);
           }
         });
@@ -80,7 +107,9 @@ export default class Ascendancy {
   }
 
   public selectAscendancy(ascendancy: string) {
-    if (this.ascendancy === ascendancy) return;
+    if (this.ascendancy === ascendancy) {
+      return;
+    }
     if (this.ascendancyTrees.has(ascendancy)) {
       this.ascendancy = ascendancy;
     }

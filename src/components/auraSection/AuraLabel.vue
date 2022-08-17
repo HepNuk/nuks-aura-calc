@@ -69,7 +69,7 @@ export default defineComponent({
     const { aura } = useAura(props.auraId);
 
     const maxGenerosityLevel = computed(() => {
-      switch (aura.generosityType) {
+      switch (aura.value.generosityType) {
         case 1:
           return 40;
         case 2:
@@ -80,29 +80,29 @@ export default defineComponent({
     });
 
     watch(
-      () => aura.generosityType,
+      () => aura.value.generosityType,
       (to) => {
-        if (to === 0 && aura.generosityLevel > 0) {
-          aura.generosityLevel = 0;
-        } else if (to === 2 && aura.generosityLevel > 20) {
-          aura.generosityLevel = 20;
+        if (to === 0 && aura.value.generosityLevel > 0) {
+          aura.value.generosityLevel = 0;
+        } else if (to === 2 && aura.value.generosityLevel > 20) {
+          aura.value.generosityLevel = 20;
         }
       }
     );
 
     watch(
-      () => aura.generosityLevel,
+      () => aura.value.generosityLevel,
       (to) => {
-        if (to === 0 && aura.generosityLevel > 0) {
-          aura.generosityLevel = 0;
-        } else if (to === 2 && aura.generosityLevel > 20) {
-          aura.generosityLevel = 20;
+        if (to === 0 && aura.value.generosityLevel > 0) {
+          aura.value.generosityLevel = 0;
+        } else if (to === 2 && aura.value.generosityLevel > 20) {
+          aura.value.generosityLevel = 20;
         }
       }
     );
 
-    const { auraIcon, gemIcon } = useAuraIcons(aura.id);
-    const altQualityCount = computed(() => aura.auraDetails.qualityStats.length);
+    const { auraIcon, gemIcon } = useAuraIcons(aura.value.id);
+    const altQualityCount = computed(() => aura.value.auraDetails.qualityStats.length);
     const generosityGem = imageUrl('img/gems/generosity.png');
 
     return {

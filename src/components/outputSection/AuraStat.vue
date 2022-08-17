@@ -33,9 +33,11 @@ export default defineComponent({
     const aurasAuraEffect = computed(() =>
       aura.auraEffectForGem(globalAuraEffect.value, supportGemsStatic.value)
     );
+
     const statLines = computed(() =>
       aura.getStatLines(globalAuraEffect.value, supportGemsStatic.value)
     );
+
     const qualityStatLines = computed(() =>
       aura.getQualityStatLines(globalAuraEffect.value, supportGemsStatic.value)
     );
