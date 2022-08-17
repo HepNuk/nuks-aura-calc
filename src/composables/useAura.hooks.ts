@@ -1,16 +1,23 @@
-import { Ref, ref, inject, computed, provide } from 'vue';
+import { Ref, ref, inject, computed, provide, ComputedRef } from 'vue';
 import Ascendancy from '~/models/Ascendancy';
 import type PlayerAura from '~/models/PlayerAura';
 import type SupportGem from '~/models/SupportGem';
 import Tree from '~/models/Tree';
+import { imageUrl } from './common.hook';
+
+export function useAuraIcons(id: string) {
+  const auraIcon = ref(imageUrl(`img/auras/${id}.png`));
+  const gemIcon = ref(imageUrl(`img/gems/${id}.png`));
+
+  return { auraIcon, gemIcon };
+}
 
 export function useAuras() {
-  const { auras, updateAura } = inject<{
+  const { auras } = inject<{
     auras: Ref<Map<string, PlayerAura>>;
-    updateAura: (id: string, newValue: PlayerAura) => void;
   }>('auras')!;
 
-  return { auras, updateAura };
+  return { auras };
 }
 
 export function useSupportGems() {
@@ -35,16 +42,22 @@ export function useAscendancies() {
   return { ascendancies };
 }
 
+export function useGlobalAuraEffect() {
+  const { globalAuraEffect } = inject<{
+    globalAuraEffect: ComputedRef<number>;
+  }>('globalAuraEffect')!;
+
+  return { globalAuraEffect };
+}
+
 export function useAura(id: string) {
   const { auras } = useAuras();
 
-  // const aura = computed({
-  //   get: () => auras.value.get(id)!,
-  //   set: (v: PlayerAura) => updateAura(id, v),
-  // });
-
-  const aura = auras.value.get(id);
-  return { aura };
+  if (!auras.value.get(id)) {
+    throw new Error(`Cannot find aura with id : ${id}`);
+  } else {
+    return { aura: auras.value.get(id)! };
+  }
 }
 
 export function useSupportGem(id: string) {

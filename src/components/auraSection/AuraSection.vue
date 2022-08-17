@@ -4,9 +4,9 @@
       <AuraLabel :id="aura[0]" :key="aura[0]" />
     </MyCol>
 
-    <MyCol>
+    <!-- <MyCol>
       <Reservations />
-    </MyCol>
+    </MyCol> -->
   </MyRow>
 </template>
 
@@ -14,7 +14,7 @@
 import { defineComponent, computed } from 'vue';
 
 import AuraLabel from './AuraLabel.vue';
-import Reservations from './Reservations.vue';
+// import Reservations from './Reservations.vue';
 import { useAuras } from '~/composables/useAura.hooks';
 
 export default defineComponent({
@@ -22,7 +22,7 @@ export default defineComponent({
 
   components: {
     AuraLabel,
-    Reservations,
+    // Reservations,
   },
 
   setup() {

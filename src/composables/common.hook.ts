@@ -1,6 +1,11 @@
 import { ref, inject, readonly } from 'vue';
 import type { Vue3Mq } from '~/types/global-types';
 
+export function imageUrl(imagePath: string, metaUrl = import.meta.url) {
+  const url = new URL(`/src/assets/${imagePath}`, metaUrl);
+  return url.href;
+}
+
 export function useMq() {
   const mq = inject<Vue3Mq>('mq')!;
   return { mq };
