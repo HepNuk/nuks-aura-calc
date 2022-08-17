@@ -103,9 +103,7 @@ export default defineComponent({
 
     const { auraIcon, gemIcon } = useAuraIcons(aura.id);
     const altQualityCount = computed(() => aura.auraDetails.qualityStats.length);
-
     const generosityGem = imageUrl('img/gems/generosity.png');
-    console.log(generosityGem);
 
     return {
       imageUrl,

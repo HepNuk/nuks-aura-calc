@@ -1,39 +1,49 @@
 <template>
   <label class="notable-label">
-    <img v-if="notable.active" class="notable-border" src="@/assets/img/borders/notable_border_active.png">
-    <img v-else class="notable-border" src="@/assets/img/borders/notable_border.png">
-    <img class="notable-bg" :src="nodeBg">
-    <input v-model="notable.active" class="me-1" type="checkbox">
+    <img class="notable-border" :src="nodeBorder" />
+    <img class="notable-bg" :src="nodeBg" />
+    <input
+      :value="notableActive"
+      class="me-1"
+      type="checkbox"
+      @change="$emit('toggle-notable', !notableActive)"
+    />
     {{ notable.name }}
   </label>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType, computed } from 'vue';
+import { imageUrl } from '~/composables/common.hook';
+import TreeNode from '~/models/TreeNode';
 
 export default defineComponent({
   props: {
     notable: {
-      type: Object,
-      require: true,
-    }
+      type: Object as PropType<TreeNode>,
+      required: true,
+    },
   },
+  emits: ['toggle-notable'],
 
-  computed: {
-    active(): string {
-      return this.notable.active ? 'active' : '';
-    },
+  setup(props) {
+    const notableActive = computed(() => props.notable.active);
+    const nodeBg = imageUrl(`img/${props.notable.icon}`);
+    const nodeInactiveBorder = imageUrl('img/borders/notable_border.png');
+    const nodeActiveBorder = imageUrl('img/borders/notable_border_active.png');
 
-    nodeBg(): string {
-      try {
-        return require(`@/assets/img/${this.notable.icon}`);
-      } catch {
-        return require(`@/assets/img/Art/2DArt/SkillIcons/passives/missing.png`);
-      }
-    },
-  }
+    const nodeBorder = computed(() =>
+      notableActive.value ? nodeActiveBorder : nodeInactiveBorder
+    );
+
+    return {
+      nodeBg,
+      nodeActiveBorder,
+      nodeBorder,
+      notableActive,
+    };
+  },
 });
-
 </script>
 
 <style scoped lang="scss">
@@ -50,7 +60,7 @@ export default defineComponent({
     width: 45px;
     height: 45px;
   }
-  
+
   .notable-bg {
     border-radius: 5px;
     width: 35px;
@@ -59,5 +69,4 @@ export default defineComponent({
     margin-right: 0.5em;
   }
 }
-
 </style>

@@ -6,6 +6,7 @@
     <div v-else-if="!loading" class="d-flex">
       <div class="flex-grow-1 me-2">
         <AuraSection class="content-box" />
+        <TreeSection class="content-box" />
       </div>
 
       <div class="justify-content-center">
@@ -25,10 +26,11 @@ import {
   useLoadTreeData,
 } from './composables/useLoadAuras.hooks';
 import AuraSection from './components/auraSection/AuraSection.vue';
+import TreeSection from './components/treeSection/TreeSection.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { AuraSection, OutputSection, MainHeader },
+  components: { AuraSection, OutputSection, MainHeader, TreeSection },
 
   setup() {
     const { auras, isLoadingAuras } = useLoadAuras();

@@ -59,10 +59,8 @@ export const ASCENDANCY_NODE_IDS = [
 ] as const;
 export type AscendancyNodeId = typeof ASCENDANCY_NODE_IDS[number];
 
-export const ASCENDANCIES = [
-  'Gurdian',
-  'Ascendant',
-  'Necromancer',
-  'Champion',
-] as const;
+export const ASCENDANCIES = ['Gurdian', 'Ascendant', 'Necromancer', 'Champion'] as const;
 export type AscendancyType = typeof ASCENDANCIES[number];
+
+export const JEWEL_TYPES = ['potency', 'timelessJewel', 'clusterJewels'] as const;
+export type JewelType = typeof JEWEL_TYPES[number];

@@ -1,20 +1,21 @@
 <template>
   <div class="tree-cluster-label">
-    <NotableNode class="node mb-1" :notable="cluster.notable"/>
-    <SmallNode 
+    <NotableNode class="node mb-1" :notable="cluster.notable" @toggle-notable="toggleNotable" />
+    <SmallNode
       v-for="(node, i) in cluster.smallNodes"
       :key="'smallNode-' + i"
       :node="node"
-      class="small-node" 
+      class="small-node"
+      @toggle-node="toggleSmallNode(i)"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useCluster } from '~/composables/useAura.hooks';
 import NotableNode from './NotableNode.vue';
 import SmallNode from './SmallNode.vue';
-
 
 export default defineComponent({
   name: 'TreeClsuter',
@@ -25,25 +26,21 @@ export default defineComponent({
   },
 
   props: {
-    group: {
+    clusterGroupId: {
       type: Number,
-      require: true,
+      required: true,
     },
-
-    cluster: {
-      type: Object,
-      require: true,
-    }
   },
 
-
+  setup(props) {
+    const { cluster, toggleNotable, toggleSmallNode } = useCluster(props.clusterGroupId);
+    return { toggleSmallNode, toggleNotable, cluster };
+  },
 });
-
 </script>
 
 <style scoped lang="scss">
 .small-node {
   padding-bottom: 0.5rem;
 }
-
 </style>

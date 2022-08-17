@@ -1,35 +1,48 @@
 <template>
   <label class="small-node-label mb-1 mt-2">
-    <img v-if="node.active" class="small-node-border " src="@/assets/img/borders/small_border_active.png">
-    <img v-else class="small-node-border" src="@/assets/img/borders/small_border.png">
-    <img class="small-node-bg" :src="nodeBg">
-    <input v-model="node.active" class="me-1" type="checkbox">
+    <img class="small-node-border" :src="nodeBorder" />
+    <img class="small-node-bg" :src="nodeBg" />
+    <input
+      :input="nodeActive"
+      class="me-1"
+      type="checkbox"
+      @change="$emit('toggle-node', !nodeActive)"
+    />
     {{ `${node.value}% ${node.name}` }}
   </label>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType, computed } from 'vue';
+import { imageUrl } from '~/composables/common.hook';
+import TreeNode from '~/models/TreeNode';
 
 export default defineComponent({
   props: {
     node: {
-      type: Object,
-      require: true,
-    }
-  },
-
-  computed: {
-    nodeBg(): string {
-      try {
-        return require(`@/assets/img/${this.node.icon}`);
-      } catch {
-        return require(`@/assets/img/Art/2DArt/SkillIcons/passives/missing.png`);
-      }
+      type: Object as PropType<TreeNode>,
+      required: true,
     },
   },
-});
 
+  emits: ['toggle-node'],
+
+  setup(props) {
+    const nodeActive = computed(() => props.node.active);
+    const nodeBg = imageUrl(`img/${props.node.icon}`);
+    const nodeInactiveBorder = imageUrl('img/borders/small_border.png');
+    const nodeActiveBorder = imageUrl('img/borders/small_border_active.png');
+
+    const nodeBorder = computed(() => (nodeActive.value ? nodeActiveBorder : nodeInactiveBorder));
+
+    return {
+      nodeBg,
+      nodeActiveBorder,
+      nodeBorder,
+      nodeActive,
+    };
+  },
+});
 </script>
 
 <style scoped lang="scss">
@@ -45,7 +58,7 @@ export default defineComponent({
     height: 28px;
     margin-left: 5px;
   }
-  
+
   .small-node-bg {
     border-radius: 15px;
     width: 18px;

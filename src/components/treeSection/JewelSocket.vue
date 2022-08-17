@@ -1,32 +1,27 @@
 <template>
   <label class="jewel">
-    <img :src="img">
-    <slot/>
+    <img :src="img" />
+    <slot />
   </label>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { imageUrl } from '~/composables/common.hook';
 
 export default defineComponent({
   props: {
     imgLink: {
       type: String,
-      require: true,
+      required: true,
     },
   },
 
-  computed: {
-    img() {
-      try {
-        return require(`@/assets/${this.imgLink}`);
-      } catch {
-        return require('@/assets/img/tree/missing.png');
-      }
-    },
-  }
+  setup(props) {
+    const img = imageUrl(props.imgLink);
+    return { img };
+  },
 });
-
 </script>
 
 <style scoped lang="scss">
