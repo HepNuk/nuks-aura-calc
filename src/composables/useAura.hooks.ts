@@ -33,6 +33,7 @@ export function useReserverstions() {
   });
 
   return {
+    reservedValues,
     reservedLife,
     reservedMana,
   };

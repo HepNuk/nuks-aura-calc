@@ -13,56 +13,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import ReservationBasedStat from '@/models/ReservationBasedStat';
+import { defineComponent, computed } from 'vue';
+import { useAscendancies, useReserverstions } from '~/composables/useAura.hooks';
 
 export default defineComponent({
-  props: {
-    auras: {
-      type: Object,
-      required: true,
-    },
+  setup() {
+    const { ascendancies } = useAscendancies();
+    const { reservedValues } = useReserverstions();
 
-    globalAuraEffect: {
-      type: Number,
-      require: false,
-      default: 0,
-    },
-
-    supportGemsStatic: {
-      type: Object,
-      required: true,
-    },
-
-    ascendancies: {
-      type: Object,
-      required: true,
-    },
-
-    passiveTree: {
-      type: Object,
-      required: true,
-    },
-
-    reservedValues: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  computed: {
-    resStatArray(): string[] {
-      const array: string[] = [];
-
-      this.ascendancies.forEachReservationBasedStat((resStat: ReservationBasedStat) => {
-        const statLine = resStat.getScaledStatLine(this.reservedValues);
+    const resStatArray = computed(() => {
+      const resStatArray: string[] = [];
+      ascendancies.value.forEachReservationBasedStat((resStat) => {
+        const statLine = resStat.getScaledStatLine(reservedValues);
         if (statLine) {
-          array.push(statLine);
+          resStatArray.push(statLine);
         }
       });
+      return resStatArray;
+    });
 
-      return array;
-    },
+    return { resStatArray };
   },
 });
 </script>

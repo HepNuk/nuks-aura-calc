@@ -1,14 +1,8 @@
 <template>
   <div>
     <template v-if="miscStats.length > 0">
-      <li class="aura-name">
-        Misc Bonuses
-      </li>
-      <li
-        v-for="(line, index) in miscStats"
-        :key="'afs-' + index"
-        class="aura-stat"
-      >
+      <li class="aura-name">Misc Bonuses</li>
+      <li v-for="(line, index) in miscStats" :key="'afs-' + index" class="aura-stat">
         {{ line }}
       </li>
       <li class="aura-stat separetor">
@@ -19,56 +13,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useAscendancies } from '~/composables/useAura.hooks';
 
 export default defineComponent({
-  props: {
-    auras: {
-      type: Object,
-      require: true,
-    },
+  setup() {
+    const { ascendancies } = useAscendancies();
+    const miscStats = computed(() => {
+      const miscStats: string[] = [];
 
-    globalAuraEffect: {
-      type: Number,
-      require: false,
-      default: 0,
-    },
+      ascendancies.value.forEachMiscStat((stat: string) => miscStats.push(stat));
+      return miscStats;
+    });
 
-    supportGemsStatic: {
-      type: Object,
-      require: true,
-    },
-
-    ascendancies: {
-      type: Object,
-      require: true,
-    },
-
-    passiveTree: {
-      type: Object,
-      require: true,
-    },
-  },
-
-  data() {
-    return {
-      // afsAEArray: [] as number[],
-    };
-  },
-
-  computed: {
-    miscStats(): string[] {
-      const array: string[] = [];
-
-      this.ascendancies.forEachMiscStat((stat: string) => {
-        array.push(stat);
-      });
-
-      return array;
-    },
+    return { miscStats };
   },
 });
-
 </script>
 
 <style scoped lang="scss">
@@ -82,7 +42,7 @@ li {
 }
 
 .aura-stat {
-  color:rgb(141, 173, 219);
+  color: rgb(141, 173, 219);
   font-size: 15px;
 }
 

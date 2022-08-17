@@ -6,37 +6,10 @@
     </div>
 
     <AuraStat v-for="auraId in auraIds" :key="auraId" :aura-id="auraId" />
+    <AFSStat />
+    <ReservationStat />
 
-    <!-- <AFSStat
-      v-bind="{
-        auras,
-        supportGemsStatic,
-        globalAuraEffect,
-        ascendancies,
-        passiveTree,
-      }"
-    />
-
-    <ReservationStat
-      v-bind="{
-        auras,
-        supportGemsStatic,
-        globalAuraEffect,
-        ascendancies,
-        passiveTree,
-        reservedValues,
-      }"
-    />
-
-    <MiscStat
-      v-bind="{
-        auras,
-        supportGemsStatic,
-        globalAuraEffect,
-        ascendancies,
-        passiveTree,
-      }"
-    /> -->
+    <MiscStat />
   </div>
 </template>
 

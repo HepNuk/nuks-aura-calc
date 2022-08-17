@@ -30,25 +30,25 @@ export default defineComponent({
     const { currentAscendancy } = useCurrentAscendancy();
 
     const ascendancyTreeIds = computed(() => ascendancyTrees.keys());
-    // const bootstrapColClass = computed(() => {
-    //   switch (mq.value) {
-    //     case 'xs':
-    //     case 'sm':
-    //       return 'col-12';
-    //     case 'md':
-    //     case 'lg':
-    //       return 'col-6';
-    //     default:
-    //       return 'col-3';
-    //   }
-    // });
+    const bootstrapColClass = computed(() => {
+      switch (mq.value) {
+        case 'xs':
+        case 'sm':
+          return 'col-12';
+        case 'md':
+        case 'lg':
+          return 'col-6';
+        default:
+          return 'col-3';
+      }
+    });
 
     return {
       selectAscendancy,
       ascendancyTreeIds,
       ascendancyTrees,
       currentAscendancy,
-      // bootstrapColClass,
+      bootstrapColClass,
     };
   },
 });

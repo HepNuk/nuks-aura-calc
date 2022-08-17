@@ -1,14 +1,8 @@
 <template>
   <div>
     <template v-if="afsStatLines.length > 0">
-      <li class="aura-name">
-        Auras From Skills
-      </li>
-      <li
-        v-for="(line, index) in afsStatLines"
-        :key="'afs-' + index"
-        class="aura-stat"
-      >
+      <li class="aura-name">Auras From Skills</li>
+      <li v-for="(line, index) in afsStatLines" :key="'afs-' + index" class="aura-stat">
         {{ line }}
       </li>
       <li class="aura-stat separetor">
@@ -19,72 +13,52 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import AFSstat from '@/models/AFSstat';
+import { defineComponent, computed } from 'vue';
+import {
+  useAscendancies,
+  useAuras,
+  useGlobalAuraEffect,
+  useSupportGems,
+} from '~/composables/useAura.hooks';
+import type AFSstat from '~/models/AFSstat';
 
 export default defineComponent({
-  props: {
-    auras: {
-      type: Object,
-      require: true,
-    },
+  setup() {
+    const { ascendancies } = useAscendancies();
+    const { auras } = useAuras();
+    const { supportGemsStatic } = useSupportGems();
+    const { globalAuraEffect } = useGlobalAuraEffect();
 
-    globalAuraEffect: {
-      type: Number,
-      require: false,
-      default: 0,
-    },
-
-    supportGemsStatic: {
-      type: Object,
-      require: true,
-    },
-
-    ascendancies: {
-      type: Object,
-      require: true,
-    },
-
-    passiveTree: {
-      type: Object,
-      require: true,
-    },
-  },
-
-  data() {
-    return {
-      // afsAEArray: [] as number[],
-    };
-  },
-
-  computed: {
-    afsAEArray(): AFSstat[] {
-      const array: AFSstat[] = [];
-
-      this.ascendancies.forEachAFSStat((asfNode: AFSstat) => {
-        array.push(asfNode);
+    const afsAEArray = computed(() => {
+      const afsAEArray: AFSstat[] = [];
+      ascendancies.value.forEachAFSStat((asfNode) => {
+        afsAEArray.push(asfNode);
       });
+      return afsAEArray;
+    });
 
-      return array;
-    },
-
-    afsStatLines(): string[] {
+    const afsStatLines = computed(() => {
       const auraEffects: number[] = [];
-      this.auras.forEach((aura: any) => {
-        auraEffects.push(aura.aurasFromSkillsHelperArray(this.globalAuraEffect, this.supportGemsStatic))
+      auras.value.forEach((aura) => {
+        auraEffects.push(
+          aura.aurasFromSkillsHelperArray(globalAuraEffect.value, supportGemsStatic.value)
+        );
       });
 
       const afsStatLines: string[] = [];
-      this.afsAEArray.forEach((afs: any) => {
+      afsAEArray.value.forEach((afs) => {
         const statLine = afs.getScaledStatLine(auraEffects);
-        if (statLine) afsStatLines.push(afs.getScaledStatLine(auraEffects));
+        if (statLine) {
+          afsStatLines.push(statLine);
+        }
       });
 
       return afsStatLines;
-    }
+    });
+
+    return { afsAEArray, afsStatLines };
   },
 });
-
 </script>
 
 <style scoped lang="scss">
@@ -98,7 +72,7 @@ li {
 }
 
 .aura-stat {
-  color:rgb(141, 173, 219);
+  color: rgb(141, 173, 219);
   font-size: 15px;
 }
 

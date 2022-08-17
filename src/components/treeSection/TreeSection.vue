@@ -64,7 +64,6 @@ export default defineComponent({
     const { potency, clusterJewels, timelessJewel } = useJewelSockets();
 
     const bootstrapColClass = computed(() => {
-      console.log('tree', mq.value);
       switch (mq.value) {
         case 'xs':
           return 'col-12';
